@@ -1,0 +1,48 @@
+<div class="page">
+
+    <header class="glass-header">
+        <h1>YUEXIHUANCHEN</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/archives/">Blog</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <p class="eyebrow">PERSONAL TECH BLOG</p>
+
+            <h2>YUEXIHUANCHEN</h2>
+
+            <p>Backend Developer</p>
+        </section>
+
+        <section class="posts">
+
+            <h2>Latest Posts</h2>
+
+            <% page.posts.each(function(post){ %>
+
+                <article class="post-card">
+
+                    <h3>
+                        <a href="<%- url_for(post.path) %>">
+                            <%= post.title %>
+                        </a>
+                    </h3>
+
+                    <time>
+                        <%= date(post.date, 'YYYY-MM-DD') %>
+                    </time>
+
+                </article>
+
+            <% }); %>
+
+        </section>
+
+    </main>
+
+</div>
