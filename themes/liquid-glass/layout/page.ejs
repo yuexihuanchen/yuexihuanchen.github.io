@@ -1,6 +1,7 @@
 <div class="page">
 
     <header class="glass-header">
+
         <h1>
             <a href="/">YUEXIHUANCHEN</a>
         </h1>
@@ -11,16 +12,18 @@
             <a href="/projects/">Projects</a>
             <a href="/about/">About</a>
         </nav>
+
     </header>
+
 
     <main>
 
-        <article class="post-detail">
+        <article class="post-detail page-detail">
 
             <header class="post-header">
 
                 <p class="eyebrow">
-                    <%= date(page.date, 'YYYY-MM-DD') %>
+                    <%= page.title.toUpperCase() %>
                 </p>
 
                 <h1>
@@ -29,8 +32,11 @@
 
             </header>
 
+
             <div class="post-content">
+
                 <%- page.content %>
+
             </div>
 
         </article>
@@ -38,4 +44,3 @@
     </main>
 
 </div>
-
