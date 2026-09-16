@@ -3,21 +3,66 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: yuexihuachen
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: yuexihuachen
 language: en
 timezone: ''
 
 # aircloud required settings
-SEOTitle: Hexo
+SEOTitle: yuexihuachen
+email: 2578038405@qq.com
 keyword: ''
-sidebar-avatar: img/avatar.svg
+sidebar-avatar: img/avatar.jpg
 search:
   path: search.json
   field: post
+
+# Social links (leave blank until configured)
+weibo_username: ''
+zhihu_username: ''
+github_username: ''
+twitter_username: ''
+facebook_username: ''
+linkedin_username: ''
+
+# Comment configuration (uncomment one provider and fill the placeholders)
+# comment:
+#   type: giscus
+#   script: |
+#     <script src="https://giscus.app/client.js" data-repo="OWNER/REPO" data-repo-id="" data-category="" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" async></script>
+# comment:
+#   type: disqus
+#   script: 'https://YOUR-SITE.disqus.com/embed.js'
+# comment:
+#   type: livere
+#   livere_id: ''
+#   livere_uid: ''
+# comment:
+#   type: gitment
+#   id: ''
+#   secret: ''
+#   owner: OWNER
+#   repo: REPO
+
+# Analytics configuration (uncomment and fill as needed)
+# analytics:
+#   google:
+#     site_verification: ''
+#     gtag_id: ''
+#   bing:
+#     site_verification: ''
+#   baidu:
+#     site_verification: ''
+#     id: ''
+#     disable_transformation: false
+#   cloudflare:
+#     token: ''
+#   umami:
+#     host: ''
+#     id: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
