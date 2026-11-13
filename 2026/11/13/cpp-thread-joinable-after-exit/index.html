@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        线程函数已经结束，为什么 joinable() 还是 true？ - yuexihuachen
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/blog.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="blog-site">
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button type="button" aria-label="导航菜单" aria-controls="nav-content" aria-expanded="false">
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" alt="yuexihuachen 的头像" />
+        </div>
+        <div class="name">
+            <i>yuexihuachen</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/" >
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags" >
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives" >
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener" href="https://my-site-pink-iota.vercel.app/">
+                    <i class="iconfont icon-shoucang1" aria-hidden="true"></i>
+                    <span>数字花园</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/" >
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/" >
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <button id="search" type="button">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </button>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E7%AD%89%E7%BA%BF%E7%A8%8B%E5%8F%91%E5%87%BA%E9%80%80%E5%87%BA%E9%80%9A%E7%9F%A5"><span class="toc-text">先等线程发出退出通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joinable-%E6%9F%A5%E7%9A%84%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AF%B9%E8%B1%A1"><span class="toc-text">joinable() 查的是线程对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%8E%89-join-%E4%BC%9A%E6%80%8E%E6%A0%B7"><span class="toc-text">漏掉 join() 会怎样</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input" aria-label="搜索"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        
+    </div>
+    
+    <div class="index-middle blog-content">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        线程函数已经结束，为什么 joinable() 还是 true？
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2026-11-13 22:20:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#C++" title="C++">C++</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#多线程" title="多线程">多线程</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>整理多线程笔记时，我发现自己很容易把 <code>joinable()</code> 理解成「这个线程还在运行吗？」顺着这个理解想，线程函数执行完以后，它就该返回 <code>false</code>。写个小程序一试，结果却是 <code>true</code>。</p>
+<h2 id="先等线程发出退出通知"><a href="#先等线程发出退出通知" class="headerlink" title="先等线程发出退出通知"></a>先等线程发出退出通知</h2><p>在主线程里用 <code>sleep_for()</code> 等一会儿，只能说给了子线程一些运行时间。为了固定实验的先后顺序，我用 <code>std::promise</code> 在线程退出时发一个通知。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;future&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::promise&lt;<span class="type">void</span>&gt; exit_signal;</span><br><span class="line">    <span class="keyword">auto</span> exited = exit_signal.<span class="built_in">get_future</span>();</span><br><span class="line"></span><br><span class="line">    <span class="function">std::thread <span class="title">worker</span><span class="params">([&amp;exit_signal] &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        exit_signal.set_value_at_thread_exit();</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line"></span><br><span class="line">    exited.<span class="built_in">wait</span>();</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; std::boolalpha</span><br><span class="line">              &lt;&lt; <span class="string">&quot;Before join: &quot;</span> &lt;&lt; worker.<span class="built_in">joinable</span>() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    worker.<span class="built_in">join</span>();</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;After join:  &quot;</span> &lt;&lt; worker.<span class="built_in">joinable</span>() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Before join: true</span><br><span class="line">After join:  false</span><br></pre></td></tr></table></figure>
+
+<p><code>set_value_at_thread_exit()</code> 把通知安排在线程退出时发出，等该线程中具有线程存储期的对象都销毁后，<code>future</code> 才会就绪。<code>exited.wait()</code> 返回时，线程函数已经执行完，而主线程还没对 <code>worker</code> 调用 <code>join()</code>。 <a target="_blank" rel="noopener" href="https://eel.is/c++draft/futures.promise#23">C++ 标准草案：std::promise</a></p>
+<h2 id="joinable-查的是线程对象"><a href="#joinable-查的是线程对象" class="headerlink" title="joinable() 查的是线程对象"></a><code>joinable()</code> 查的是线程对象</h2><p>标准把 <code>joinable()</code> 定义为 <code>worker.get_id() != std::thread::id{}</code>。只要 <code>worker</code> 还关联着一个线程，它就会返回 <code>true</code>。线程函数执行完以后，这个关联依然存在。成功调用 <code>join()</code> 后，<code>worker.get_id()</code> 变回默认值，这时 <code>joinable()</code> 返回 <code>false</code>。 <a target="_blank" rel="noopener" href="https://eel.is/c++draft/thread.thread.member">C++ 标准草案：std::thread 成员函数</a></p>
+<table>
+<thead>
+<tr>
+<th>观察时刻</th>
+<th>线程函数的状态</th>
+<th><code>worker.joinable()</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刚创建 <code>worker</code></td>
+<td>可能还在执行，也可能已经结束</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>exited.wait()</code> 返回后</td>
+<td>已结束</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>worker.join()</code> 返回后</td>
+<td>已结束</td>
+<td><code>false</code></td>
+</tr>
+</tbody></table>
+<h2 id="漏掉-join-会怎样"><a href="#漏掉-join-会怎样" class="headerlink" title="漏掉 join() 会怎样"></a>漏掉 <code>join()</code> 会怎样</h2><p>如果删掉示例中的 <code>worker.join()</code>，即使 <code>exited.wait()</code> 已经返回，程序仍会在 <code>worker</code> 析构时调用 <code>std::terminate()</code>。析构函数检查的是对象此刻是否还处于 <code>joinable</code> 状态。在线程需要由当前代码等待完成的场景里，<code>if (worker.joinable()) worker.join();</code> 检查的是这个对象是否仍然关联着一个可以等待的线程。 <a target="_blank" rel="noopener" href="https://eel.is/c++draft/thread.thread.destr">C++ 标准草案：std::thread 析构函数</a></p>
+<p>相关笔记：<a target="_blank" rel="noopener" href="https://my-site-pink-iota.vercel.app/notes/learning/cpp/cpp%E5%A4%9A%E7%BA%BF%E7%A8%8B">C++ 多线程</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

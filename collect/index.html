@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang=zh-CN>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,9 @@
 <link rel="stylesheet" href="/css/aircloud.css">
 
     
+<link rel="stylesheet" href="/css/blog.css">
+
+    
 <link rel="stylesheet" href="/css/gitment.css">
 
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
@@ -40,19 +43,17 @@
 
 <meta name="generator" content="Hexo 8.1.2"></head>
 
-<body>
+<body class="blog-site">
 
 <div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
+    <button type="button" aria-label="导航菜单" aria-controls="nav-content" aria-expanded="false">
         <span class="btn-bar"></span>
         <span class="btn-bar"></span>
         <span class="btn-bar"></span>
     </button>
 </div>
 
-<div class="index-about">
-    <i>  </i>
-</div>
+
 
 <div class="index-container">
     
@@ -61,7 +62,7 @@
 <div class="nav" id="nav">
     <div class="avatar-name">
         <div class="avatar ">
-            <img src="/img/avatar.jpg" />
+            <img src="/img/avatar.jpg" alt="yuexihuachen 的头像" />
         </div>
         <div class="name">
             <i>yuexihuachen</i>
@@ -70,41 +71,47 @@
     <div class="contents" id="nav-content">
         <ul>
             <li >
-                <a href="/">
+                <a href="/" >
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>首页</span>
                 </a>
             </li>
             <li >
-                <a href="/tags">
+                <a href="/tags" >
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
-                <a href="/archives">
+                <a href="/archives" >
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener" href="https://my-site-pink-iota.vercel.app/">
+                    <i class="iconfont icon-shoucang1" aria-hidden="true"></i>
+                    <span>数字花园</span>
                 </a>
             </li>
             <li  class=active >
-                <a href="/collect/">
+                <a href="/collect/" aria-current="page">
                     <i class="iconfont icon-shoucang1"></i>
-                    <span>COLLECT</span>
+                    <span>收藏</span>
                 </a>
             </li>
             <li >
-                <a href="/about/">
+                <a href="/about/" >
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
-                <a id="search">
+                <button id="search" type="button">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
-                </a>
+                    <span>搜索</span>
+                </button>
             </li>
             
         </ul>
@@ -118,8 +125,8 @@
     <div class="search-container">
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <input id="search-input" aria-label="搜索"/>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -127,14 +134,13 @@
     </div>
 </div>
 
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
+        
     </div>
     
-    <div class="index-middle">
+    <div class="index-middle blog-content">
         <!-- Main Content -->
         
+<h1 class="blog-page-title">收藏</h1>
 <div class="post-content ">
   
   <div id="comment-container"></div>
@@ -183,7 +189,6 @@
     window.hexo_root = "/"
     window.isPost = false
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
 <script src="/js/index.js"></script>
 
