@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang=<%= config.language === 'zh' ? 'zh-CN' : config.language %>>
 <%- partial('_partial/head') %>
-<body>
+<body class="blog-site">
 
 <div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
+    <button type="button" aria-label="导航菜单" aria-controls="nav-content" aria-expanded="false">
         <span class="btn-bar"></span>
         <span class="btn-bar"></span>
         <span class="btn-bar"></span>
     </button>
 </div>
 
+<% if (config.subtitle) { %>
 <div class="index-about">
     <i> <%= config.subtitle %> </i>
 </div>
+<% } %>
 
 <div class="index-container">
     <% if(!is_current('/404')){%>
     <div class="index-left">
         <%- partial('_partial/nav', null, {cache: false}) %>
+        <% if (config.subtitle) { %>
         <div class="index-about-mobile">
             <i> <%= config.subtitle %> </i>
         </div>
+        <% } %>
     </div>
     <% } %>
-    <div class="index-middle">
+    <div class="index-middle blog-content">
         <!-- Main Content -->
         <%- body %>
     </div>
@@ -40,7 +44,6 @@
     window.hexo_root = "<%- config.root %>"
     window.isPost = <%- is_post() %>
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <%- js('js/index.js') %>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <%if( (page.comments) && config.comment && config.comment.type === 'gitment'){%>

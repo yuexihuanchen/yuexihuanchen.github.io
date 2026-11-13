@@ -10,8 +10,8 @@ window.onresize = () => {
     // often for debug
     if(window.document.documentElement.clientWidth > 680){
         let aboutContent = document.getElementById('nav-content')
-        aboutContent.classList.remove('hide-block')
-        aboutContent.classList.remove('show-block');
+        aboutContent?.classList.remove('hide-block', 'show-block');
+        navToggleButton?.setAttribute('aria-expanded', 'false');
     }
     // if(window.isPost){
         // reLayout()
@@ -23,16 +23,14 @@ window.onresize = () => {
 // Nav switch function on mobile
 /*****************************************************************************/
 const navToggle = document.getElementById('site-nav-toggle');
-navToggle.addEventListener('click', () => {
-    let aboutContent = document.getElementById('nav-content')
-    if (!aboutContent.classList.contains('show-block')) {
-        aboutContent.classList.add('show-block');
-        aboutContent.classList.remove('hide-block')
-    } else {
-        aboutContent.classList.add('hide-block')
-        aboutContent.classList.remove('show-block');
-    }
-})
+const navToggleButton = navToggle?.querySelector('button');
+navToggleButton?.addEventListener('click', () => {
+    const navContent = document.getElementById('nav-content');
+    if (!navContent) return;
+    const expanded = navContent.classList.toggle('show-block');
+    navContent.classList.toggle('hide-block', !expanded);
+    navToggleButton.setAttribute('aria-expanded', String(expanded));
+});
 
 
 // global search
@@ -46,7 +44,7 @@ const escSearch = document.getElementById('esc-search')
 const bgSearch = document.getElementById('search-bg')
 const beginSearch = document.getElementById('begin-search')
 
-searchField.addEventListener('mousewheel',(e) => {
+searchField?.addEventListener('mousewheel',(e) => {
     // e.preventDefault()
     e.stopPropagation()
     return false
@@ -55,19 +53,19 @@ searchField.addEventListener('mousewheel',(e) => {
 var searchJson;
 var caseSensitive = false
 
-searchButton.addEventListener('click', () => {
+searchButton?.addEventListener('click', () => {
     search()
 });
 
-escSearch.addEventListener('click',() => {
+escSearch?.addEventListener('click',() => {
     hideSearchField()
 })
 
-bgSearch.addEventListener('click',() => {
+bgSearch?.addEventListener('click',() => {
     hideSearchField()
 })
 
-beginSearch.addEventListener('click',() => {
+beginSearch?.addEventListener('click',() => {
     let keyword = searchInput.value;
     if(keyword){
         searchFromKeyWord(keyword)
@@ -83,15 +81,16 @@ function toggleSeachField(){
 }
 
 function showSearchField() {
-    searchInput.focus()
     searchField.classList.add('show-flex-fade');
     searchField.classList.remove('hide-flex-fade');
+    searchInput.focus();
 }
 
 function hideSearchField(){
     window.onkeydown = null;
     searchField.classList.add('hide-flex-fade');
     searchField.classList.remove('show-flex-fade');
+    searchButton.focus();
 }
 
 function searchFromKeyWord(keyword = ""){
@@ -176,7 +175,7 @@ function searchFromKeyWord(keyword = ""){
     searchResultContainer.appendChild(searchFragment)
 }
 
-function search(){
+async function search(){
 
     toggleSeachField()
 
@@ -194,29 +193,25 @@ function search(){
     }
 
 
-    if(!searchJson){
-        let isXml;
-        let search_path = window.hexo_search_path;
-        if (search_path.length === 0) {
-            search_path = "search.json";
-        } else if (/json$/i.test(search_path)) {
-            isXml = false;
-        }
-        let path = window.hexo_root+ search_path;
-        $.ajax({
-            url: path,
-            dataType: isXml ? "xml" : "json",
-            async: true,
-            success: function (res) {
-                searchJson = isXml ? $("entry", res).map(function() {
-                    return {
-                        title: $("title", this).text(),
-                        content: $("content",this).text(),
-                        url: $("url" , this).text()
-                    };
-                }).get() : res;
+    if (!searchJson) {
+        const path = window.hexo_search_path || 'search.json';
+        try {
+            const response = await fetch(window.hexo_root + path);
+            if (!response.ok) throw new Error('Search index HTTP ' + response.status);
+            if (/\.xml$/i.test(path)) {
+                const xml = new DOMParser().parseFromString(await response.text(), 'application/xml');
+                searchJson = Array.from(xml.querySelectorAll('entry'), entry => ({
+                    title: entry.querySelector('title')?.textContent,
+                    content: entry.querySelector('content')?.textContent,
+                    url: entry.querySelector('url')?.textContent
+                }));
+            } else {
+                searchJson = await response.json();
             }
-        });
+            if (searchInput.value.trim()) searchFromKeyWord(searchInput.value.trim());
+        } catch {
+            searchResultContainer.textContent = '搜索暂时无法加载。';
+        }
     }
 
 }

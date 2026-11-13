@@ -1,0 +1,42 @@
+<% const calendar = github_contribution_calendar(); %>
+<section class="blog-home-section contributions" aria-labelledby="contributions-heading">
+    <div class="blog-section-heading">
+        <h2 id="contributions-heading">GitHub 贡献</h2>
+        <a href="https://github.com/yuexihuanchen">查看 GitHub ↗</a>
+    </div>
+    <% if (calendar) { %>
+    <p class="contributions-summary">过去一年 · <%= calendar.total %> 次贡献</p>
+    <div class="contributions-scroll" role="region" aria-label="过去一年的贡献日历">
+        <div class="contributions-chart" style="--weeks: <%= calendar.columns %>">
+            <div class="contributions-months" aria-hidden="true">
+                <% for (const month of calendar.months) { %>
+                <span style="grid-column: <%= month.column + 1 %>"><%= month.month %>月</span>
+                <% } %>
+            </div>
+            <div class="contributions-weekdays" aria-hidden="true">
+                <span>周一</span><span>周三</span><span>周五</span>
+            </div>
+            <div class="contributions-grid" role="group" aria-label="每日贡献。方向键可切换日期">
+                <% for (const day of calendar.days) {
+                    const label = day.date + '，' + day.count + ' 次贡献'; %>
+                <button type="button" class="contribution-day level-<%= day.level %>"
+                    style="grid-area: <%= day.row + 1 %> / <%= day.column + 1 %>"
+                    data-contribution="<%= label %>" aria-label="<%= label %>" title="<%= label %>"></button>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="contributions-meta">
+        <output class="contributions-detail" aria-live="polite">更新于 <%= calendar.updatedOn %></output>
+        <div class="contributions-legend" aria-label="颜色越深，贡献越多">
+            <span>少</span>
+            <% for (let level = 0; level <= 4; level++) { %>
+            <i class="level-<%= level %>" aria-hidden="true"></i>
+            <% } %>
+            <span>多</span>
+        </div>
+    </div>
+    <% } else { %>
+    <p class="contributions-summary">贡献日历暂时无法加载。<a href="https://github.com/users/yuexihuanchen/contributions">在 GitHub 上查看</a></p>
+    <% } %>
+</section>

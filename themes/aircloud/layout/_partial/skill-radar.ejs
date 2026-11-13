@@ -1,0 +1,53 @@
+<%
+    const { topics, notesUpdatedOn, reposUpdatedOn } = skill_radar_data(site.data.skill_topics);
+    const total = topic => topic.notes.length + (topic.repos || 0);
+    const step = 2;
+    const maxNotes = Math.ceil(Math.max(step, ...topics.map(total)) / step) * step;
+    const rings = Array.from({ length: maxNotes / step }, (_, index) => (index + 1) * step);
+    const center = { x: 150, y: 106 };
+    const radius = 66;
+    function point(index, distance) {
+        const angle = 2 * Math.PI * index / topics.length - Math.PI / 2;
+        return [center.x + Math.cos(angle) * distance, center.y + Math.sin(angle) * distance];
+    }
+    function polygon(distanceFor) {
+        return topics.map((topic, index) => point(index, distanceFor(topic)).map(value => value.toFixed(1)).join(',')).join(' ');
+    }
+%>
+<section class="blog-home-section skill-radar" aria-labelledby="skill-radar-heading">
+    <div class="blog-section-heading">
+        <h2 id="skill-radar-heading">技能雷达</h2>
+    </div>
+    <p class="skill-radar-caption">数字花园公开笔记与近 180 天有推送的非 Fork、未归档公开仓库各计一项。仓库按主要语言归类。</p>
+    <div class="skill-radar-body">
+        <svg viewBox="0 0 300 216" class="skill-radar-chart" aria-hidden="true">
+            <% for (const ring of rings) { %>
+            <polygon class="skill-radar-grid" points="<%= polygon(() => radius * ring / maxNotes) %>" />
+            <% } %>
+            <% topics.forEach((topic, index) => { const [x, y] = point(index, radius); %>
+            <line class="skill-radar-grid" x1="<%= center.x %>" y1="<%= center.y %>" x2="<%= x.toFixed(1) %>" y2="<%= y.toFixed(1) %>" />
+            <% }); %>
+            <polygon class="skill-radar-shape" points="<%= polygon(topic => radius * total(topic) / maxNotes) %>" />
+            <% topics.forEach((topic, index) => {
+                const [x, y] = point(index, radius * total(topic) / maxNotes);
+                const [labelX, labelY] = point(index, radius + 25);
+            %>
+            <circle class="skill-radar-marker" cx="<%= x.toFixed(1) %>" cy="<%= y.toFixed(1) %>" r="3" />
+            <text x="<%= labelX.toFixed(1) %>" y="<%= labelY.toFixed(1) %>" text-anchor="middle" dominant-baseline="central"><%= topic.name %></text>
+            <% }); %>
+        </svg>
+        <ul class="skill-radar-topics">
+            <% topics.forEach(topic => { %>
+            <li>
+                <% const examples = topic.examples || topic.notes.slice(0, 3); %>
+                <span><strong><%= topic.name %></strong><% if (examples.length) { %><small><%= examples.join(' · ') %></small><% } %></span>
+                <span class="skill-radar-count"><% if (notesUpdatedOn) { %><%= topic.notes.length %> 篇笔记<% } %><% if (topic.repos !== null) { %><%= notesUpdatedOn ? ' · ' : '' %><%= topic.repos %> 个仓库<% } %></span>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+    <p class="skill-radar-caption">
+        <%= notesUpdatedOn ? '笔记更新于 ' + notesUpdatedOn : '笔记数据暂不可用' %> ·
+        <%= reposUpdatedOn ? '仓库更新于 ' + reposUpdatedOn : '仓库数据暂不可用' %>
+    </p>
+</section>

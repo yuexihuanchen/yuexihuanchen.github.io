@@ -2,7 +2,7 @@
 <div class="nav" id="nav">
     <div class="avatar-name">
         <div class="avatar <% if(config.avatar_style && config.avatar_style.radius) {%>radius<% } %>">
-            <img src="<%= config['root'] %><%= config['sidebar-avatar'] %>" />
+            <img src="<%= url_for(config['sidebar-avatar']) %>" alt="<%= config.author %> 的头像" />
         </div>
         <div class="name">
             <i><%= config.author %></i>
@@ -11,41 +11,47 @@
     <div class="contents" id="nav-content">
         <ul>
             <li <% if(is_home()){ %> <%- "class=active" %> <% } %>>
-                <a href="<%= url_for(config.home_dir || '/') %>">
+                <a href="<%= url_for(config.home_dir || '/') %>" <% if (is_home()) { %>aria-current="page"<% } %>>
                     <i class="iconfont icon-shouye1"></i>
                     <span><%= __('nav.home') %></span>
                 </a>
             </li>
             <li <% if(is_current('tags')){ %> <%- "class=active" %> <% } %>>
-                <a href="<%= url_for(config.tag_dir) %>">
+                <a href="<%= url_for(config.tag_dir) %>" <% if (is_current('tags')) { %>aria-current="page"<% } %>>
                     <i class="iconfont icon-biaoqian1"></i>
                     <span><%= __('nav.tags') %></span>
                 </a>
             </li>
-            <li <% if(is_current('archive')){ %> <%- "class=active" %> <% } %>>
-                <a href="<%= url_for(config.archive_dir) %>">
+            <li <% if(is_current(config.archive_dir)){ %> <%- "class=active" %> <% } %>>
+                <a href="<%= url_for(config.archive_dir) %>" <% if (is_current(config.archive_dir)) { %>aria-current="page"<% } %>>
                     <i class="iconfont icon-guidang2"></i>
                     <span><%= __('nav.archives') %></span>
                 </a>
             </li>
+            <li>
+                <a href="https://my-site-pink-iota.vercel.app/">
+                    <i class="iconfont icon-shoucang1" aria-hidden="true"></i>
+                    <span>数字花园</span>
+                </a>
+            </li>
             <li <% if(is_current('collect')){ %> <%- "class=active" %> <% } %>>
-                <a href="<%= config.root %><%- 'collect/' %>">
+                <a href="<%= url_for('collect/') %>" <% if (is_current('collect')) { %>aria-current="page"<% } %>>
                     <i class="iconfont icon-shoucang1"></i>
                     <span><%= __('nav.collect') %></span>
                 </a>
             </li>
             <li <% if(is_current('about')){ %> <%- "class=active" %> <% } %>>
-                <a href="<%= config.root %><%- 'about/' %>">
+                <a href="<%= url_for('about/') %>" <% if (is_current('about')) { %>aria-current="page"<% } %>>
                     <i class="iconfont icon-guanyu2"></i>
                     <span><%= __('nav.about') %></span>
                 </a>
             </li>
             <%if(config.search && config.search.path){%>
             <li>
-                <a id="search">
+                <button id="search" type="button">
                     <i class="iconfont icon-sousuo1"></i>
                     <span><%= __('nav.search') %></span>
-                </a>
+                </button>
             </li>
             <% } %>
         </ul>
@@ -64,7 +70,7 @@
     <div class="search-container">
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
+            <input id="search-input" aria-label="<%= __('nav.search') %>"/>
             <span id="begin-search"><%= __('search.search') %></span>
         </div>
         <div class="search-result-container" id="search-result-container">

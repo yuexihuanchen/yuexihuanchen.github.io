@@ -2,16 +2,33 @@
 layout: layout
 ---
 
-<div class="post-preview-container" style="min-height: <%- config.per_page * 72 %>px">
+<% if (is_home_first_page()) { %>
+<main class="blog-home" data-refresh-url="<%= url_for('__blog-data') %>">
+    <header class="blog-home-heading">
+        <h1><%= config.author %></h1>
+        <button class="pixel-cat" type="button" aria-label="逗逗像素猫">
+            <svg viewBox="0 0 19 13" aria-hidden="true" shape-rendering="crispEdges">
+                <path fill="#fcfcfa" stroke="#30302e" stroke-width="1" d="M2.5 4.5v-4h2v1h1v1h3v-1h1v-1h2v4h1v4h-1v1h4v3h-3v-1h-2v1h-3v-2h-2v-1h-2v-1h-1z"/>
+                <path fill="#30302e" d="M4 5h1v1H4zm5 0h1v1H9zM6 7h2v1H6z"/>
+                <path class="pixel-cat-tail" fill="none" stroke="#30302e" d="M14.5 10.5h2v-2h1v-2h1"/>
+            </svg>
+        </button>
+    </header>
+    <%- partial('_partial/github-contributions') %>
+    <section class="blog-home-section" aria-labelledby="recent-posts-heading">
+        <div class="blog-section-heading">
+            <h2 id="recent-posts-heading">近期文章</h2>
+            <a href="<%= url_for(config.archive_dir) %>">查看归档 →</a>
+        </div>
+<% } %>
+<div class="post-preview-container">
     <% page.posts.each(function(post){ %>
     <div class="post-preview">
-        <div class="post-time"><%= post.date.format(config.date_format) %></div>
+        <time class="post-time" datetime="<%= post.date.format('YYYY-MM-DD') %>"><%= post.date.format(config.date_format) %></time>
         <div class="post-info">
-            <a href="<%- full_url_for(post.path) %>">
+            <a class="post-title-link" href="<%= url_for(post.path) %>">
                 <h3>
-                    <%- (post.title || "Untitled").replace(/[<>&"]/g,function(c){
-                        return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];
-                    }) %>
+                    <%= post.title || '未命名文章' %>
                 </h3>
             </a>
             <p>
@@ -30,12 +47,29 @@ layout: layout
 <ul class="pager">
     <% if (page.prev){ %>
     <li class="previous">
-        <a href="<%- config.root %><%- page.prev_link %>">&larr; Newer Posts</a>
+        <a href="<%= url_for(page.prev_link) %>">&larr; 上一页</a>
     </li>
     <% } %>
     <% if (page.next){ %>
     <li class="next">
-        <a href="<%- config.root %><%- page.next_link %>">Older Posts &rarr;</a>
+        <a href="<%= url_for(page.next_link) %>">下一页 &rarr;</a>
     </li>
     <% } %>
 </ul>
+<% if (is_home_first_page()) { %>
+    </section>
+    <%- partial('_partial/skill-radar') %>
+    <section class="blog-home-section" aria-labelledby="garden-heading">
+        <div class="blog-section-heading">
+            <h2 id="garden-heading">数字花园</h2>
+            <a href="https://my-site-pink-iota.vercel.app/">进入花园 ↗</a>
+        </div>
+        <ul class="garden-notes">
+            <li><a href="https://my-site-pink-iota.vercel.app/notes/learning/cpp/cpp%E5%A4%9A%E7%BA%BF%E7%A8%8B">C++ 多线程</a><span>C++</span></li>
+            <li><a href="https://my-site-pink-iota.vercel.app/notes/learning/cpp/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a><span>C++</span></li>
+            <li><a href="https://my-site-pink-iota.vercel.app/notes/learning/%E7%BD%91%E5%AE%89learning/troubleshoot/Tcpdump">Tcpdump</a><span>网络排障</span></li>
+        </ul>
+    </section>
+</main>
+<%- js({ src: 'js/blog-home.js', defer: true }) %>
+<% } %>

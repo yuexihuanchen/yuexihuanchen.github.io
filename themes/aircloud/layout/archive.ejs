@@ -15,6 +15,7 @@ site.posts.sort('date').reverse().forEach(function(post){
 
 <!-- 归档列表 -->
 
+<h1 class="blog-page-title"><%= page.tag || page.category || '归档' %></h1>
 <div class="archives-container">
 <% Object.keys(years).reverse().forEach(function(year){  %>
 <div class="one-tag-list">

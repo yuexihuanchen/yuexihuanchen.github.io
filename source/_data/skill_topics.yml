@@ -1,0 +1,16 @@
+- name: C++
+  paths: [notes/learning/cpp/]
+  languages: [C++]
+- name: Java / Spring
+  paths: [notes/learning/springbootLearning/]
+  exclude: [notes/learning/springbootLearning/MyBatis, notes/learning/springbootLearning/redis, notes/learning/springbootLearning/RabbitMQ]
+  languages: [Java]
+- name: JS / TS
+  paths: [notes/learning/javascript/, notes/learning/typescript/]
+  languages: [JavaScript, TypeScript]
+- name: 数据与消息
+  paths: [notes/learning/springbootLearning/MyBatis, notes/learning/springbootLearning/redis, notes/learning/springbootLearning/RabbitMQ]
+- name: 网络排障
+  paths: [notes/learning/网安learning/troubleshoot/]
+- name: 认证与协议
+  paths: [notes/learning/网安learning/Authentication-protocol/, notes/learning/网安learning/Network-Protocols/]
