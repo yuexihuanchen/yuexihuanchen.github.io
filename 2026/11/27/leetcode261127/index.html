@@ -20,7 +20,7 @@
     
 <link rel="stylesheet" href="/css/aircloud.css">
 
-    <link rel="stylesheet" href="/css/blog.css?v=20261127-4">
+    <link rel="stylesheet" href="/css/blog.css?v=20261127-5">
     
 <link rel="stylesheet" href="/css/gitment.css">
 
@@ -175,7 +175,7 @@
 </ul>
 <p>每种物品都有无限件可供购买，给定总预算 <code>budget</code>，要求在不超过预算的情况下获得最多的物品。</p>
 <h3 id="特殊赠送规则"><a href="#特殊赠送规则" class="headerlink" title="特殊赠送规则"></a>特殊赠送规则</h3><p>购买物品 i 后，可以免费获得所有满足以下条件的其他物品 j 各一件：</p>
-<p>$$<br>factor_j \bmod factor_i &#x3D; 0,\quad j \ne i<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>f</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><msub><mi>r</mi><mi>j</mi></msub><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>f</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><msub><mi>r</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mspace width="1em"/><mi>j</mi><mo mathvariant="normal">≠</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">factor_j \bmod factor_i = 0,\quad j \ne i</annotation></semantics></math></span>
 <p>需要注意：</p>
 <ol>
 <li><strong>首次购买才有赠品</strong>，重复购买同一种物品不会再次触发赠送。</li>
@@ -217,8 +217,7 @@
 <td>贪心</td>
 </tr>
 </tbody></table>
-<h3 id="整体解题流程"><a href="#整体解题流程" class="headerlink" title="整体解题流程"></a>整体解题流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A([&quot;开始：items + budget&quot;])</span><br><span class="line">    B[&quot;统计每种 factor 的数量&quot;]</span><br><span class="line">    C[&quot;计算首次购买收益 w[i]&quot;]</span><br><span class="line">    D[&quot;0-1 背包：选择首次购买的商品&quot;]</span><br><span class="line">    E[&quot;枚举首次购买阶段的预算&quot;]</span><br><span class="line">    F[&quot;剩余预算购买最低价商品&quot;]</span><br><span class="line">    G([&quot;取最大总收益&quot;])</span><br><span class="line"></span><br><span class="line">    A --&gt; B --&gt; C --&gt; D --&gt; E --&gt; F --&gt; G</span><br><span class="line"></span><br><span class="line">    classDef start fill:#DBEAFE,stroke:#2563EB,color:#1E40AF,stroke-width:2px</span><br><span class="line">    classDef core fill:#DCFCE7,stroke:#16A34A,color:#166534,stroke-width:2px</span><br><span class="line">    classDef normal fill:#F1F5F9,stroke:#94A3B8,color:#334155</span><br><span class="line">    classDef result fill:#FEF3C7,stroke:#D97706,color:#92400E,stroke-width:2px</span><br><span class="line"></span><br><span class="line">    class A start</span><br><span class="line">    class B,C,E,F normal</span><br><span class="line">    class D core</span><br><span class="line">    class G result</span><br></pre></td></tr></table></figure>
-
+<h3 id="整体解题流程"><a href="#整体解题流程" class="headerlink" title="整体解题流程"></a>整体解题流程</h3><p><img src="/img/leetcode261127/overview.svg" alt="整体解题流程"></p>
 <hr>
 <h2 id="三、计算首次购买收益-w-i"><a href="#三、计算首次购买收益-w-i" class="headerlink" title="三、计算首次购买收益 w[i]"></a>三、计算首次购买收益 w[i]</h2><p>定义：</p>
 <p><code>w[i]</code> 表示首次购买物品 i 后，最终获得的物品总数。</p>
@@ -228,13 +227,12 @@
 <li>所有满足整除条件的其他物品，各免费获得 1 件。</li>
 </ul>
 <p>数学表示：</p>
-<p>$$<br>w[i]&#x3D;\sum_{j&#x3D;0}^{n-1} [factor_j \bmod factor_i &#x3D; 0]<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></munderover><mo stretchy="false">[</mo><mi>f</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><msub><mi>r</mi><mi>j</mi></msub><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>f</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><msub><mi>r</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">w[i]=\sum_{j=0}^{n-1} [factor_j \bmod factor_i = 0]</annotation></semantics></math></span>
 <p>其中方括号表示：条件成立计 1，否则计 0。</p>
 <p>这里把自身也统计进去，恰好对应花钱购买的那 1 件。</p>
 <h3 id="示例：赠送关系"><a href="#示例：赠送关系" class="headerlink" title="示例：赠送关系"></a>示例：赠送关系</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;</span><br><span class="line">    &#123;<span class="number">6</span>,<span class="number">2</span>&#125;,  <span class="comment">// 物品 0</span></span><br><span class="line">    &#123;<span class="number">2</span>,<span class="number">6</span>&#125;,  <span class="comment">// 物品 1</span></span><br><span class="line">    &#123;<span class="number">3</span>,<span class="number">4</span>&#125;   <span class="comment">// 物品 2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">flowchart TB</span><br><span class="line">    subgraph SHOP[&quot;商店中的三种商品&quot;]</span><br><span class="line">        direction LR</span><br><span class="line">        A[&quot;物品 1&lt;br/&gt;factor = 2&lt;br/&gt;价格 = 6&quot;]</span><br><span class="line">        B[&quot;物品 2&lt;br/&gt;factor = 3&lt;br/&gt;价格 = 4&quot;]</span><br><span class="line">        C[&quot;物品 0&lt;br/&gt;factor = 6&lt;br/&gt;价格 = 2&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    A --&gt;|&quot;2 能整除 6&lt;br/&gt;免费赠送 1 件&quot;| C</span><br><span class="line">    B --&gt;|&quot;3 能整除 6&lt;br/&gt;免费赠送 1 件&quot;| C</span><br><span class="line"></span><br><span class="line">    classDef buyer fill:#DBEAFE,stroke:#2563EB,color:#1E40AF,stroke-width:2px</span><br><span class="line">    classDef gift fill:#DCFCE7,stroke:#16A34A,color:#166534,stroke-width:2px</span><br><span class="line"></span><br><span class="line">    class A,B buyer</span><br><span class="line">    class C gift</span><br></pre></td></tr></table></figure>
-
+<p><img src="/img/leetcode261127/gift-relationships.svg" alt="赠送关系示意图"></p>
 <p>注意：<strong>从物品 1 和物品 2 都能获得物品 0，所以物品 0 可以被免费获得多次。</strong></p>
 <p>计算得到：</p>
 <table>
@@ -285,18 +283,17 @@
 <li>首次购买收益：<code>w[i]</code></li>
 </ul>
 <p>因为每种物品的首次购买奖励只能领取一次，所以可以把每种物品当成一个只能选一次的背包物品。</p>
-<h3 id="1-状态定义"><a href="#1-状态定义" class="headerlink" title="1. 状态定义"></a>1. 状态定义</h3><p>$$<br>dp[i][j]<br>$$</p>
+<h3 id="1-状态定义"><a href="#1-状态定义" class="headerlink" title="1. 状态定义"></a>1. 状态定义</h3><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">dp[i][j]</annotation></semantics></math></span>
 <p>表示：</p>
 <p><strong>只考虑前 i 种物品，首次购买总花费不超过 j 时，最多能够获得多少件物品。</strong></p>
 <h3 id="2-状态转移"><a href="#2-状态转移" class="headerlink" title="2. 状态转移"></a>2. 状态转移</h3><p>对于当前物品 i，有两种选择。</p>
 <p><strong>选择一：不购买</strong></p>
 <p>直接继承上一行：</p>
-<p>$$<br>dp[i+1][j]&#x3D;dp[i][j]<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">dp[i+1][j]=dp[i][j]</annotation></semantics></math></span>
 <p><strong>选择二：首次购买</strong></p>
 <p>如果预算足够支付 <code>price[i]</code>，就可以花费 <code>price[i]</code> 获得 <code>w[i]</code> 件物品：</p>
-<p>$$<br>dp[i+1][j]&#x3D;\max(dp[i+1][j],\ dp[i][j-price_i]+w[i])<br>$$</p>
-<h3 id="背包决策图"><a href="#背包决策图" class="headerlink" title="背包决策图"></a>背包决策图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    START([&quot;处理物品 i，预算 j&quot;])</span><br><span class="line">    CHECK&#123;&quot;j &gt;= price[i] ?&quot;&#125;</span><br><span class="line">    NO[&quot;买不起&lt;br/&gt;只能继承上一行&quot;]</span><br><span class="line">    YES1[&quot;方案 A：不购买&lt;br/&gt;dp[i][j]&quot;]</span><br><span class="line">    YES2[&quot;方案 B：首次购买&lt;br/&gt;dp[i][j-price[i]] + w[i]&quot;]</span><br><span class="line">    MAX[&quot;取两种方案的最大值&quot;]</span><br><span class="line">    END([&quot;得到 dp[i+1][j]&quot;])</span><br><span class="line"></span><br><span class="line">    START --&gt; CHECK</span><br><span class="line">    CHECK --&gt;|&quot;否&quot;| NO --&gt; END</span><br><span class="line">    CHECK --&gt;|&quot;是&quot;| YES1 --&gt; MAX</span><br><span class="line">    CHECK --&gt;|&quot;是&quot;| YES2 --&gt; MAX</span><br><span class="line">    MAX --&gt; END</span><br><span class="line"></span><br><span class="line">    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#1E40AF</span><br><span class="line">    classDef green fill:#DCFCE7,stroke:#16A34A,color:#166534</span><br><span class="line">    classDef orange fill:#FEF3C7,stroke:#D97706,color:#92400E</span><br><span class="line"></span><br><span class="line">    class START,CHECK blue</span><br><span class="line">    class NO,YES1,YES2 green</span><br><span class="line">    class MAX,END orange</span><br></pre></td></tr></table></figure>
-
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mtext> </mtext><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><msub><mi>e</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>+</mo><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">dp[i+1][j]=\max(dp[i+1][j],\ dp[i][j-price_i]+w[i])</annotation></semantics></math></span>
+<h3 id="背包决策图"><a href="#背包决策图" class="headerlink" title="背包决策图"></a>背包决策图</h3><p><img src="/img/leetcode261127/knapsack-decisions.svg" alt="背包决策图"></p>
 <h3 id="最容易写错的地方"><a href="#最容易写错的地方" class="headerlink" title="最容易写错的地方"></a>最容易写错的地方</h3><p><strong>每一行都必须先继承上一行的状态！</strong></p>
 <p>即使当前物品的价格超过预算，也不能把之前已经获得的收益丢掉。</p>
 <p>例如：</p>
@@ -311,15 +308,14 @@
 <p>那么问题就简单了：</p>
 <p><strong>如果所有商品带来的额外收益都一样，当然优先购买价格最低的商品。</strong></p>
 <p>定义：</p>
-<p>$$<br>minprice&#x3D;\min_i(price_i)<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi><mo>=</mo><munder><mrow><mi>min</mi><mo>⁡</mo></mrow><mi>i</mi></munder><mo stretchy="false">(</mo><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><msub><mi>e</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">minprice=\min_i(price_i)</annotation></semantics></math></span>
 <p>假设总预算为 9 元，最低价格为 2 元。</p>
 <p>如果首次购买阶段预留 6 元，剩余预算为：</p>
-<p>$$<br>9-6&#x3D;3<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>9</mn><mo>−</mo><mn>6</mn><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">9-6=3</annotation></semantics></math></span>
 <p>还能额外购买：</p>
-<p>$$<br>\left\lfloor\frac{3}{2}\right\rfloor&#x3D;1<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mo fence="true">⌊</mo><mfrac><mn>3</mn><mn>2</mn></mfrac><mo fence="true">⌋</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\left\lfloor\frac{3}{2}\right\rfloor=1</annotation></semantics></math></span>
 <p>件物品。</p>
-<h3 id="预算分配示意图"><a href="#预算分配示意图" class="headerlink" title="预算分配示意图"></a>预算分配示意图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A([&quot;总预算：9 元&quot;])</span><br><span class="line">    B[&quot;首次购买阶段&lt;br/&gt;预留 6 元&quot;]</span><br><span class="line">    C[&quot;普通购买阶段&lt;br/&gt;剩余 3 元&quot;]</span><br><span class="line">    D[&quot;首次购买物品 0 和 2&lt;br/&gt;获得 3 件&quot;]</span><br><span class="line">    E[&quot;最低单价 2 元&lt;br/&gt;额外购买 1 件&quot;]</span><br><span class="line">    F([&quot;最终总数：4 件&quot;])</span><br><span class="line"></span><br><span class="line">    A --&gt; B --&gt; D --&gt; F</span><br><span class="line">    A --&gt; C --&gt; E --&gt; F</span><br><span class="line"></span><br><span class="line">    classDef start fill:#DBEAFE,stroke:#2563EB,color:#1E40AF,stroke-width:2px</span><br><span class="line">    classDef first fill:#DCFCE7,stroke:#16A34A,color:#166534</span><br><span class="line">    classDef second fill:#FEF3C7,stroke:#D97706,color:#92400E</span><br><span class="line">    classDef result fill:#EDE9FE,stroke:#7C3AED,color:#5B21B6,stroke-width:2px</span><br><span class="line"></span><br><span class="line">    class A start</span><br><span class="line">    class B,D first</span><br><span class="line">    class C,E second</span><br><span class="line">    class F result</span><br></pre></td></tr></table></figure>
-
+<h3 id="预算分配示意图"><a href="#预算分配示意图" class="headerlink" title="预算分配示意图"></a>预算分配示意图</h3><p><img src="/img/leetcode261127/budget-allocation.svg" alt="预算分配示意图"></p>
 <hr>
 <h2 id="六、枚举预算分配，计算最终答案"><a href="#六、枚举预算分配，计算最终答案" class="headerlink" title="六、枚举预算分配，计算最终答案"></a>六、枚举预算分配，计算最终答案</h2><p>这里是整道题最巧妙的地方。</p>
 <p><strong>首次购买收益最大，不代表最终获得的物品最多！</strong></p>
@@ -327,13 +323,13 @@
 <p>所以需要尝试所有预算分配方式。</p>
 <p>假设首次购买阶段的预算上限是 <code>i</code>：</p>
 <p>首次购买最多获得：</p>
-<p>$$<br>dp[n][i]<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">dp[n][i]</annotation></semantics></math></span>
 <p>剩余预算最多购买：</p>
-<p>$$<br>\left\lfloor\frac{budget-i}{minprice}\right\rfloor<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">⌊</mo><mfrac><mrow><mi>b</mi><mi>u</mi><mi>d</mi><mi>g</mi><mi>e</mi><mi>t</mi><mo>−</mo><mi>i</mi></mrow><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi></mrow></mfrac><mo fence="true">⌋</mo></mrow><annotation encoding="application/x-tex">\left\lfloor\frac{budget-i}{minprice}\right\rfloor</annotation></semantics></math></span>
 <p>两部分相加：</p>
-<p>$$<br>total(i)&#x3D;dp[n][i]+\left\lfloor\frac{budget-i}{minprice}\right\rfloor<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>+</mo><mrow><mo fence="true">⌊</mo><mfrac><mrow><mi>b</mi><mi>u</mi><mi>d</mi><mi>g</mi><mi>e</mi><mi>t</mi><mo>−</mo><mi>i</mi></mrow><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi></mrow></mfrac><mo fence="true">⌋</mo></mrow></mrow><annotation encoding="application/x-tex">total(i)=dp[n][i]+\left\lfloor\frac{budget-i}{minprice}\right\rfloor</annotation></semantics></math></span>
 <p>最后枚举所有预算：</p>
-<p>$$<br>ans&#x3D;\max_{0\le i\le budget} total(i)<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mi>n</mi><mi>s</mi><mo>=</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mrow><mn>0</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>b</mi><mi>u</mi><mi>d</mi><mi>g</mi><mi>e</mi><mi>t</mi></mrow></munder><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ans=\max_{0\le i\le budget} total(i)</annotation></semantics></math></span>
 <h3 id="示例：不同预算分配的收益"><a href="#示例：不同预算分配的收益" class="headerlink" title="示例：不同预算分配的收益"></a>示例：不同预算分配的收益</h3><p>对于：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;&#123;<span class="number">6</span>,<span class="number">2</span>&#125;, &#123;<span class="number">2</span>,<span class="number">6</span>&#125;, &#123;<span class="number">3</span>,<span class="number">4</span>&#125;&#125;;</span><br><span class="line">budget = <span class="number">9</span>;</span><br></pre></td></tr></table></figure>
 
@@ -447,7 +443,7 @@
 </tr>
 </tbody></table>
 <p>主要空间开销来自二维 DP：</p>
-<p>$$<br>O(nB)<br>$$</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nB)</annotation></semantics></math></span>
 <hr>
 <h2 id="九、一句话总结"><a href="#九、一句话总结" class="headerlink" title="九、一句话总结"></a>九、一句话总结</h2><p><strong>首次购买有赠品 → 0-1 背包。</strong></p>
 <p><strong>重复购买没赠品 → 最低价格贪心。</strong></p>

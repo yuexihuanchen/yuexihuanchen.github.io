@@ -177,6 +177,21 @@
     overflow-x: auto;
 }
 
+.blog-content .post-content .katex-display {
+    display: block;
+    max-width: 100%;
+    margin-block: 0.75em;
+    padding-block: 0.15em;
+    overflow-x: auto;
+}
+
+.blog-content .post-content img[src*="/img/leetcode261127/"] {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+}
+
 .blog-site .toc-article {
     width: 100%;
 }
