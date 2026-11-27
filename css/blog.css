@@ -299,7 +299,15 @@
     text-underline-offset: 0.22em;
 }
 
-.blog-section-heading > a {
+.blog-section-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px 14px;
+}
+
+.blog-section-heading > a,
+.blog-section-links a {
     flex: 0 0 auto;
     color: var(--muted);
     font-size: 14px;
@@ -307,7 +315,7 @@
 }
 
 .blog-home a:hover,
-.blog-home .post-title-link:hover h3 {
+.blog-home .post-title-link:hover :is(h2, h3) {
     color: var(--accent);
     text-decoration: underline;
 }
@@ -342,14 +350,14 @@
     grid-row: 1;
 }
 
-.blog-home .post-preview .post-title-link h3 {
+.blog-home .post-preview .post-title-link :is(h2, h3) {
     margin: 0 0 5px;
     color: var(--ink);
     font-size: 18px;
     font-weight: 400;
 }
 
-.blog-home .post-preview .post-title-link:active h3 {
+.blog-home .post-preview .post-title-link:active :is(h2, h3) {
     color: var(--accent);
     text-decoration: underline;
     transition: none;
