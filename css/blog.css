@@ -524,23 +524,59 @@
     font-size: 14px;
 }
 
-.article-radar-topics li {
+.article-radar-topics > li {
+    border-top: 1px solid var(--rule);
+}
+
+.article-radar-topics summary,
+.article-radar-entries li {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 10px;
     padding: 6px 0;
-    border-top: 1px solid var(--rule);
 }
 
-.article-radar-topics a {
+.article-radar-topics summary,
+.article-radar-more > summary {
+    cursor: pointer;
+}
+
+.article-radar-topics summary > span:first-child::before {
+    content: "＋";
+    color: var(--muted);
+    margin-inline-end: 5px;
+}
+
+.article-radar-topics details[open] > summary > span:first-child::before {
+    content: "−";
+}
+
+.article-radar-entries {
+    margin: 0 0 8px;
+    padding-inline-start: 20px;
+    font-size: 13px;
+}
+
+.article-radar-entries a {
     overflow-wrap: anywhere;
 }
 
-.article-radar-count {
+.article-radar-count,
+.article-radar-entries li > span {
     flex-shrink: 0;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
+}
+
+.article-radar-more {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.article-radar-more > summary {
+    padding-block: 6px;
 }
 
 @media (max-width: 900px) {
