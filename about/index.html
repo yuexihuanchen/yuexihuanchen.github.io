@@ -196,14 +196,14 @@
 
     </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+    
+        <p class="visit-stats" aria-label="全站访问统计">
+    <span title="按统计服务去重的访客数">全站访客 <strong id="busuanzi_value_site_uv" aria-live="polite">—</strong> 人</span>
+    <span>全站浏览 <strong id="busuanzi_value_site_pv" aria-live="polite">—</strong> 次</span>
+</p>
+
+    
+    <p>Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 
@@ -220,7 +220,13 @@
 
 <script src="/js/index.js"></script>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script data-site-url="https://yuexihuanchen.github.io">
+    if (location.origin === new URL(document.currentScript.dataset.siteUrl).origin) {
+        const counter = document.createElement('script');
+        counter.src = 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+        document.head.appendChild(counter);
+    }
+</script>
 
 
 
