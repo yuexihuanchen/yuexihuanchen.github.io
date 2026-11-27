@@ -462,54 +462,54 @@
     .pixel-orbits { aspect-ratio: 9 / 4; }
 }
 
-.skill-radar-caption {
+.article-radar-caption {
     margin: 8px 0 12px;
     color: var(--muted);
     font-size: 14px;
 }
 
-.skill-radar-body {
+.article-radar-body:has(.article-radar-chart) {
     display: grid;
-    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 330px) minmax(0, 1fr);
     align-items: center;
     gap: clamp(12px, 3vw, 36px);
 }
 
-.skill-radar-chart {
+.article-radar-chart {
     display: block;
     width: 100%;
-    max-width: 300px;
+    max-width: 330px;
     margin: auto;
 }
 
-.skill-radar-chart text {
+.article-radar-chart text {
     fill: var(--ink);
     font-size: 13px;
 }
 
-.skill-radar-grid {
+.article-radar-grid {
     fill: none;
     stroke: #d0d7d0;
 }
 
-.skill-radar-shape {
+.article-radar-shape {
     fill: #52755a29;
     stroke: #52755a;
     stroke-width: 1.5px;
 }
 
-.skill-radar-marker {
+.article-radar-marker {
     fill: #52755a;
 }
 
-.skill-radar-topics {
+.article-radar-topics {
     margin: 0;
     padding: 0;
     list-style: none;
     font-size: 14px;
 }
 
-.skill-radar-topics li {
+.article-radar-topics li {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -518,15 +518,11 @@
     border-top: 1px solid var(--rule);
 }
 
-.skill-radar-topics small {
-    display: block;
-    margin-top: 3px;
-    color: var(--muted);
-    font-size: 12px;
+.article-radar-topics a {
     overflow-wrap: anywhere;
 }
 
-.skill-radar-count {
+.article-radar-count {
     flex-shrink: 0;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
@@ -545,7 +541,7 @@
     .blog-home-heading { min-height: 74px; }
     .blog-site .blog-content { padding-inline: 20px; }
     .pixel-cat { width: 49px; }
-    .skill-radar-body { grid-template-columns: minmax(0, 1fr); }
+    .article-radar-body:has(.article-radar-chart) { grid-template-columns: minmax(0, 1fr); }
     .blog-home .post-preview {
         grid-template-columns: minmax(0, 1fr);
         gap: 4px;

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        力扣 3946. 购买最多物品数目 I - yuexihuachen
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    <link rel="stylesheet" href="/css/blog.css?v=20261127-4">
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="blog-site">
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button type="button" aria-label="导航菜单" aria-controls="nav-content" aria-expanded="false">
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" alt="yuexihuachen 的头像" />
+        </div>
+        <div class="name">
+            <i>yuexihuachen</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/" >
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/leetcode/" >
+                    <span>力扣每日一题</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags" >
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives" >
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener" href="https://my-site-pink-iota.vercel.app/">
+                    <i class="iconfont icon-shoucang1" aria-hidden="true"></i>
+                    <span>数字花园</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/" >
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/" >
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <button id="search" type="button">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </button>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AD%E4%B9%B0%E6%9C%80%E5%A4%9A%E7%89%A9%E5%93%81%E6%95%B0%E7%9B%AE"><span class="toc-text">购买最多物品数目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">一、题目描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E8%B5%A0%E9%80%81%E8%A7%84%E5%88%99"><span class="toc-text">特殊赠送规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF%EF%BC%9A%E6%8B%86%E5%88%86%E8%B4%AD%E4%B9%B0%E8%A1%8C%E4%B8%BA"><span class="toc-text">二、核心思路：拆分购买行为</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E8%A7%A3%E9%A2%98%E6%B5%81%E7%A8%8B"><span class="toc-text">整体解题流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%AE%A1%E7%AE%97%E9%A6%96%E6%AC%A1%E8%B4%AD%E4%B9%B0%E6%94%B6%E7%9B%8A-w-i"><span class="toc-text">三、计算首次购买收益 w[i]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%B5%A0%E9%80%81%E5%85%B3%E7%B3%BB"><span class="toc-text">示例：赠送关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E7%BB%9F%E8%AE%A1%EF%BC%9F"><span class="toc-text">如何高效统计？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%810-1-%E8%83%8C%E5%8C%85%EF%BC%9A%E5%86%B3%E5%AE%9A%E5%93%AA%E4%BA%9B%E7%89%A9%E5%93%81%E5%80%BC%E5%BE%97%E9%A6%96%E6%AC%A1%E8%B4%AD%E4%B9%B0"><span class="toc-text">四、0-1 背包：决定哪些物品值得首次购买</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">1. 状态定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB"><span class="toc-text">2. 状态转移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E5%8C%85%E5%86%B3%E7%AD%96%E5%9B%BE"><span class="toc-text">背包决策图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%AE%B9%E6%98%93%E5%86%99%E9%94%99%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-text">最容易写错的地方</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%B4%AA%E5%BF%83%EF%BC%9A%E5%89%A9%E4%BD%99%E9%A2%84%E7%AE%97%E5%85%A8%E9%83%A8%E8%B4%AD%E4%B9%B0%E6%9C%80%E4%BE%BF%E5%AE%9C%E7%9A%84%E7%89%A9%E5%93%81"><span class="toc-text">五、贪心：剩余预算全部购买最便宜的物品</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="toc-text">预算分配示意图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9E%9A%E4%B8%BE%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D%EF%BC%8C%E8%AE%A1%E7%AE%97%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88"><span class="toc-text">六、枚举预算分配，计算最终答案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%B8%8D%E5%90%8C%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D%E7%9A%84%E6%94%B6%E7%9B%8A"><span class="toc-text">示例：不同预算分配的收益</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">七、易错点总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">八、复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">九、一句话总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E9%81%93%E9%A2%98%E7%9C%9F%E6%AD%A3%E5%80%BC%E5%BE%97%E8%AE%B0%E4%BD%8F%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-text">这道题真正值得记住的思想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">十、完整代码</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input" aria-label="搜索"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        
+    </div>
+    
+    <div class="index-middle blog-content">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        力扣 3946. 购买最多物品数目 I
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2026-11-27 12:57:57</span></span>
+        
+        <span class="attr">本文浏览 <strong id="busuanzi_value_page_pv" aria-live="polite">—</strong> 次</span>
+        
+            <span class="attr"><a href="/leetcode/">力扣每日一题</a></span>
+        
+    </div>
+    <div class="post-content ">
+        <h1 id="购买最多物品数目"><a href="#购买最多物品数目" class="headerlink" title="购买最多物品数目"></a>购买最多物品数目</h1><blockquote>
+<p><strong>算法标签：</strong> 0-1 背包、贪心、枚举、因子与倍数<br><strong>核心思想：</strong> 首次购买用 0-1 背包，重复购买用贪心，最后枚举预算分配。</p>
+</blockquote>
+<hr>
+<h2 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h2><p>给定一个二维整数数组 <code>items</code>，其中：</p>
+<p><code>items[i] = [factor_i, price_i]</code></p>
+<ul>
+<li><code>factor_i</code>：第 i 种物品的因子。</li>
+<li><code>price_i</code>：第 i 种物品的价格。</li>
+</ul>
+<p>每种物品都有无限件可供购买，给定总预算 <code>budget</code>，要求在不超过预算的情况下获得最多的物品。</p>
+<h3 id="特殊赠送规则"><a href="#特殊赠送规则" class="headerlink" title="特殊赠送规则"></a>特殊赠送规则</h3><p>购买物品 i 后，可以免费获得所有满足以下条件的其他物品 j 各一件：</p>
+<p>$$<br>factor_j \bmod factor_i &#x3D; 0,\quad j \ne i<br>$$</p>
+<p>需要注意：</p>
+<ol>
+<li><strong>首次购买才有赠品</strong>，重复购买同一种物品不会再次触发赠送。</li>
+<li>不同种类的物品可以赠送同一种物品，因此同一种物品可能被免费获得多次。</li>
+<li>免费获得的物品也计入最终物品数量。</li>
+</ol>
+<p><strong>目标：最大化购买物品与免费物品的总数量。</strong></p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;&#123;<span class="number">6</span>,<span class="number">2</span>&#125;, &#123;<span class="number">2</span>,<span class="number">6</span>&#125;, &#123;<span class="number">3</span>,<span class="number">4</span>&#125;&#125;;</span><br><span class="line">budget = <span class="number">9</span>;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>一种最优购买方案：</p>
+<ul>
+<li>购买物品 0 两件，花费 4 元。</li>
+<li>购买物品 2 一件，花费 4 元，并免费获得物品 0 一件。</li>
+<li>总共花费 8 元，得到 4 件物品。</li>
+</ul>
+<hr>
+<h2 id="二、核心思路：拆分购买行为"><a href="#二、核心思路：拆分购买行为" class="headerlink" title="二、核心思路：拆分购买行为"></a>二、核心思路：拆分购买行为</h2><p>想象你走进一家促销商店：</p>
+<p><strong>第一次购买某种商品时，享受“买一送多”；但第二次购买相同商品，就没有赠品了。</strong></p>
+<p>所以我们把购买过程拆成两个阶段：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>购买特点</th>
+<th>算法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>首次购买</td>
+<td>购买一件，可能赠送多件</td>
+<td>0-1 背包</td>
+</tr>
+<tr>
+<td>重复购买</td>
+<td>没有赠品，每次只增加一件</td>
+<td>贪心</td>
+</tr>
+</tbody></table>
+<h3 id="整体解题流程"><a href="#整体解题流程" class="headerlink" title="整体解题流程"></a>整体解题流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A([&quot;开始：items + budget&quot;])</span><br><span class="line">    B[&quot;统计每种 factor 的数量&quot;]</span><br><span class="line">    C[&quot;计算首次购买收益 w[i]&quot;]</span><br><span class="line">    D[&quot;0-1 背包：选择首次购买的商品&quot;]</span><br><span class="line">    E[&quot;枚举首次购买阶段的预算&quot;]</span><br><span class="line">    F[&quot;剩余预算购买最低价商品&quot;]</span><br><span class="line">    G([&quot;取最大总收益&quot;])</span><br><span class="line"></span><br><span class="line">    A --&gt; B --&gt; C --&gt; D --&gt; E --&gt; F --&gt; G</span><br><span class="line"></span><br><span class="line">    classDef start fill:#DBEAFE,stroke:#2563EB,color:#1E40AF,stroke-width:2px</span><br><span class="line">    classDef core fill:#DCFCE7,stroke:#16A34A,color:#166534,stroke-width:2px</span><br><span class="line">    classDef normal fill:#F1F5F9,stroke:#94A3B8,color:#334155</span><br><span class="line">    classDef result fill:#FEF3C7,stroke:#D97706,color:#92400E,stroke-width:2px</span><br><span class="line"></span><br><span class="line">    class A start</span><br><span class="line">    class B,C,E,F normal</span><br><span class="line">    class D core</span><br><span class="line">    class G result</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、计算首次购买收益-w-i"><a href="#三、计算首次购买收益-w-i" class="headerlink" title="三、计算首次购买收益 w[i]"></a>三、计算首次购买收益 w[i]</h2><p>定义：</p>
+<p><code>w[i]</code> 表示首次购买物品 i 后，最终获得的物品总数。</p>
+<p>包括：</p>
+<ul>
+<li>自己购买的 1 件。</li>
+<li>所有满足整除条件的其他物品，各免费获得 1 件。</li>
+</ul>
+<p>数学表示：</p>
+<p>$$<br>w[i]&#x3D;\sum_{j&#x3D;0}^{n-1} [factor_j \bmod factor_i &#x3D; 0]<br>$$</p>
+<p>其中方括号表示：条件成立计 1，否则计 0。</p>
+<p>这里把自身也统计进去，恰好对应花钱购买的那 1 件。</p>
+<h3 id="示例：赠送关系"><a href="#示例：赠送关系" class="headerlink" title="示例：赠送关系"></a>示例：赠送关系</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;</span><br><span class="line">    &#123;<span class="number">6</span>,<span class="number">2</span>&#125;,  <span class="comment">// 物品 0</span></span><br><span class="line">    &#123;<span class="number">2</span>,<span class="number">6</span>&#125;,  <span class="comment">// 物品 1</span></span><br><span class="line">    &#123;<span class="number">3</span>,<span class="number">4</span>&#125;   <span class="comment">// 物品 2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">flowchart TB</span><br><span class="line">    subgraph SHOP[&quot;商店中的三种商品&quot;]</span><br><span class="line">        direction LR</span><br><span class="line">        A[&quot;物品 1&lt;br/&gt;factor = 2&lt;br/&gt;价格 = 6&quot;]</span><br><span class="line">        B[&quot;物品 2&lt;br/&gt;factor = 3&lt;br/&gt;价格 = 4&quot;]</span><br><span class="line">        C[&quot;物品 0&lt;br/&gt;factor = 6&lt;br/&gt;价格 = 2&quot;]</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    A --&gt;|&quot;2 能整除 6&lt;br/&gt;免费赠送 1 件&quot;| C</span><br><span class="line">    B --&gt;|&quot;3 能整除 6&lt;br/&gt;免费赠送 1 件&quot;| C</span><br><span class="line"></span><br><span class="line">    classDef buyer fill:#DBEAFE,stroke:#2563EB,color:#1E40AF,stroke-width:2px</span><br><span class="line">    classDef gift fill:#DCFCE7,stroke:#16A34A,color:#166534,stroke-width:2px</span><br><span class="line"></span><br><span class="line">    class A,B buyer</span><br><span class="line">    class C gift</span><br></pre></td></tr></table></figure>
+
+<p>注意：<strong>从物品 1 和物品 2 都能获得物品 0，所以物品 0 可以被免费获得多次。</strong></p>
+<p>计算得到：</p>
+<table>
+<thead>
+<tr>
+<th>首次购买</th>
+<th align="right">自己获得</th>
+<th align="right">免费获得</th>
+<th align="right">w[i]</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>物品 0（factor&#x3D;6）</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td>物品 1（factor&#x3D;2）</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td>物品 2（factor&#x3D;3）</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+</tbody></table>
+<p>所以：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何高效统计？"><a href="#如何高效统计？" class="headerlink" title="如何高效统计？"></a>如何高效统计？</h3><p>使用哈希表：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; umii;</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<p><code>umii[f]</code> &#x3D; factor 等于 f 的物品数量。</p>
+<p>然后枚举 <code>factor_i</code> 的所有倍数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fac, <span class="number">2</span>*fac, <span class="number">3</span>*fac, ...</span><br></pre></td></tr></table></figure>
+
+<p>将这些倍数对应的物品数量累加到 <code>w[i]</code>。</p>
+<p><strong>注意：相同 factor 可能对应多个不同物品，因此不能只判断 factor 是否存在，还要累加其出现次数。</strong></p>
+<hr>
+<h2 id="四、0-1-背包：决定哪些物品值得首次购买"><a href="#四、0-1-背包：决定哪些物品值得首次购买" class="headerlink" title="四、0-1 背包：决定哪些物品值得首次购买"></a>四、0-1 背包：决定哪些物品值得首次购买</h2><p>现在每种物品都拥有两个属性：</p>
+<ul>
+<li>购买成本：<code>price[i]</code></li>
+<li>首次购买收益：<code>w[i]</code></li>
+</ul>
+<p>因为每种物品的首次购买奖励只能领取一次，所以可以把每种物品当成一个只能选一次的背包物品。</p>
+<h3 id="1-状态定义"><a href="#1-状态定义" class="headerlink" title="1. 状态定义"></a>1. 状态定义</h3><p>$$<br>dp[i][j]<br>$$</p>
+<p>表示：</p>
+<p><strong>只考虑前 i 种物品，首次购买总花费不超过 j 时，最多能够获得多少件物品。</strong></p>
+<h3 id="2-状态转移"><a href="#2-状态转移" class="headerlink" title="2. 状态转移"></a>2. 状态转移</h3><p>对于当前物品 i，有两种选择。</p>
+<p><strong>选择一：不购买</strong></p>
+<p>直接继承上一行：</p>
+<p>$$<br>dp[i+1][j]&#x3D;dp[i][j]<br>$$</p>
+<p><strong>选择二：首次购买</strong></p>
+<p>如果预算足够支付 <code>price[i]</code>，就可以花费 <code>price[i]</code> 获得 <code>w[i]</code> 件物品：</p>
+<p>$$<br>dp[i+1][j]&#x3D;\max(dp[i+1][j],\ dp[i][j-price_i]+w[i])<br>$$</p>
+<h3 id="背包决策图"><a href="#背包决策图" class="headerlink" title="背包决策图"></a>背包决策图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    START([&quot;处理物品 i，预算 j&quot;])</span><br><span class="line">    CHECK&#123;&quot;j &gt;= price[i] ?&quot;&#125;</span><br><span class="line">    NO[&quot;买不起&lt;br/&gt;只能继承上一行&quot;]</span><br><span class="line">    YES1[&quot;方案 A：不购买&lt;br/&gt;dp[i][j]&quot;]</span><br><span class="line">    YES2[&quot;方案 B：首次购买&lt;br/&gt;dp[i][j-price[i]] + w[i]&quot;]</span><br><span class="line">    MAX[&quot;取两种方案的最大值&quot;]</span><br><span class="line">    END([&quot;得到 dp[i+1][j]&quot;])</span><br><span class="line"></span><br><span class="line">    START --&gt; CHECK</span><br><span class="line">    CHECK --&gt;|&quot;否&quot;| NO --&gt; END</span><br><span class="line">    CHECK --&gt;|&quot;是&quot;| YES1 --&gt; MAX</span><br><span class="line">    CHECK --&gt;|&quot;是&quot;| YES2 --&gt; MAX</span><br><span class="line">    MAX --&gt; END</span><br><span class="line"></span><br><span class="line">    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#1E40AF</span><br><span class="line">    classDef green fill:#DCFCE7,stroke:#16A34A,color:#166534</span><br><span class="line">    classDef orange fill:#FEF3C7,stroke:#D97706,color:#92400E</span><br><span class="line"></span><br><span class="line">    class START,CHECK blue</span><br><span class="line">    class NO,YES1,YES2 green</span><br><span class="line">    class MAX,END orange</span><br></pre></td></tr></table></figure>
+
+<h3 id="最容易写错的地方"><a href="#最容易写错的地方" class="headerlink" title="最容易写错的地方"></a>最容易写错的地方</h3><p><strong>每一行都必须先继承上一行的状态！</strong></p>
+<p>即使当前物品的价格超过预算，也不能把之前已经获得的收益丢掉。</p>
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;&#123;<span class="number">1</span>,<span class="number">1</span>&#125;, &#123;<span class="number">1</span>,<span class="number">2</span>&#125;&#125;;</span><br><span class="line">budget = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第一种物品价格为 1 元，首次购买可以获得 2 件。</p>
+<p>处理第二种物品时，它的价格为 2 元，虽然买不起，但之前的收益 2 件必须保留。</p>
+<p>因此，内层循环应从 <code>j = 0</code> 开始，先执行状态继承，再判断能否购买。</p>
+<hr>
+<h2 id="五、贪心：剩余预算全部购买最便宜的物品"><a href="#五、贪心：剩余预算全部购买最便宜的物品" class="headerlink" title="五、贪心：剩余预算全部购买最便宜的物品"></a>五、贪心：剩余预算全部购买最便宜的物品</h2><p>完成首次购买阶段后，后续购买不再产生赠品。</p>
+<p>这时每多买一件物品，获得的收益都是 1。</p>
+<p>那么问题就简单了：</p>
+<p><strong>如果所有商品带来的额外收益都一样，当然优先购买价格最低的商品。</strong></p>
+<p>定义：</p>
+<p>$$<br>minprice&#x3D;\min_i(price_i)<br>$$</p>
+<p>假设总预算为 9 元，最低价格为 2 元。</p>
+<p>如果首次购买阶段预留 6 元，剩余预算为：</p>
+<p>$$<br>9-6&#x3D;3<br>$$</p>
+<p>还能额外购买：</p>
+<p>$$<br>\left\lfloor\frac{3}{2}\right\rfloor&#x3D;1<br>$$</p>
+<p>件物品。</p>
+<h3 id="预算分配示意图"><a href="#预算分配示意图" class="headerlink" title="预算分配示意图"></a>预算分配示意图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A([&quot;总预算：9 元&quot;])</span><br><span class="line">    B[&quot;首次购买阶段&lt;br/&gt;预留 6 元&quot;]</span><br><span class="line">    C[&quot;普通购买阶段&lt;br/&gt;剩余 3 元&quot;]</span><br><span class="line">    D[&quot;首次购买物品 0 和 2&lt;br/&gt;获得 3 件&quot;]</span><br><span class="line">    E[&quot;最低单价 2 元&lt;br/&gt;额外购买 1 件&quot;]</span><br><span class="line">    F([&quot;最终总数：4 件&quot;])</span><br><span class="line"></span><br><span class="line">    A --&gt; B --&gt; D --&gt; F</span><br><span class="line">    A --&gt; C --&gt; E --&gt; F</span><br><span class="line"></span><br><span class="line">    classDef start fill:#DBEAFE,stroke:#2563EB,color:#1E40AF,stroke-width:2px</span><br><span class="line">    classDef first fill:#DCFCE7,stroke:#16A34A,color:#166534</span><br><span class="line">    classDef second fill:#FEF3C7,stroke:#D97706,color:#92400E</span><br><span class="line">    classDef result fill:#EDE9FE,stroke:#7C3AED,color:#5B21B6,stroke-width:2px</span><br><span class="line"></span><br><span class="line">    class A start</span><br><span class="line">    class B,D first</span><br><span class="line">    class C,E second</span><br><span class="line">    class F result</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、枚举预算分配，计算最终答案"><a href="#六、枚举预算分配，计算最终答案" class="headerlink" title="六、枚举预算分配，计算最终答案"></a>六、枚举预算分配，计算最终答案</h2><p>这里是整道题最巧妙的地方。</p>
+<p><strong>首次购买收益最大，不代表最终获得的物品最多！</strong></p>
+<p>因为首次购买花费越多，剩余能够用于普通购买的预算就可能越少。</p>
+<p>所以需要尝试所有预算分配方式。</p>
+<p>假设首次购买阶段的预算上限是 <code>i</code>：</p>
+<p>首次购买最多获得：</p>
+<p>$$<br>dp[n][i]<br>$$</p>
+<p>剩余预算最多购买：</p>
+<p>$$<br>\left\lfloor\frac{budget-i}{minprice}\right\rfloor<br>$$</p>
+<p>两部分相加：</p>
+<p>$$<br>total(i)&#x3D;dp[n][i]+\left\lfloor\frac{budget-i}{minprice}\right\rfloor<br>$$</p>
+<p>最后枚举所有预算：</p>
+<p>$$<br>ans&#x3D;\max_{0\le i\le budget} total(i)<br>$$</p>
+<h3 id="示例：不同预算分配的收益"><a href="#示例：不同预算分配的收益" class="headerlink" title="示例：不同预算分配的收益"></a>示例：不同预算分配的收益</h3><p>对于：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;&#123;<span class="number">6</span>,<span class="number">2</span>&#125;, &#123;<span class="number">2</span>,<span class="number">6</span>&#125;, &#123;<span class="number">3</span>,<span class="number">4</span>&#125;&#125;;</span><br><span class="line">budget = <span class="number">9</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以得到：</p>
+<table>
+<thead>
+<tr>
+<th align="right">首次购买预算</th>
+<th align="right">首次购买最多获得</th>
+<th align="right">剩余可购买</th>
+<th align="right">总收益</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+</tbody></table>
+<p>因此：</p>
+<p><strong>最终答案为 4。</strong></p>
+<hr>
+<h2 id="七、易错点总结"><a href="#七、易错点总结" class="headerlink" title="七、易错点总结"></a>七、易错点总结</h2><table>
+<thead>
+<tr>
+<th>易错点</th>
+<th>正确理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>相同 factor 只统计一次</td>
+<td>不同下标属于不同物品，必须分别统计</td>
+</tr>
+<tr>
+<td><code>w[i]</code> 不包含自己</td>
+<td><code>w[i]</code> 表示首次购买总收益，因此包含自己购买的 1 件</td>
+</tr>
+<tr>
+<td>当前物品买不起就跳过状态更新</td>
+<td>必须继承上一行 DP</td>
+</tr>
+<tr>
+<td>直接返回 <code>dp[n][budget]</code></td>
+<td>还需要考虑剩余预算的普通购买</td>
+</tr>
+<tr>
+<td>只寻找首次购买收益最高的方案</td>
+<td>应枚举预算分配，最大化两阶段收益之和</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="八、复杂度分析"><a href="#八、复杂度分析" class="headerlink" title="八、复杂度分析"></a>八、复杂度分析</h2><p>设：</p>
+<ul>
+<li><code>n</code>：物品数量。</li>
+<li><code>B</code>：预算。</li>
+<li><code>F</code>：最大 factor。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>建立 factor 频次表</td>
+<td>平均 O(n)</td>
+</tr>
+<tr>
+<td>计算首次购买收益</td>
+<td>平均 O(Σ⌊F&#x2F;factor[i]⌋)</td>
+</tr>
+<tr>
+<td>二维 0-1 背包</td>
+<td>O(nB)</td>
+</tr>
+<tr>
+<td>枚举预算分配</td>
+<td>O(B)</td>
+</tr>
+</tbody></table>
+<p>主要空间开销来自二维 DP：</p>
+<p>$$<br>O(nB)<br>$$</p>
+<hr>
+<h2 id="九、一句话总结"><a href="#九、一句话总结" class="headerlink" title="九、一句话总结"></a>九、一句话总结</h2><p><strong>首次购买有赠品 → 0-1 背包。</strong></p>
+<p><strong>重复购买没赠品 → 最低价格贪心。</strong></p>
+<p><strong>最后枚举预算分配 → 最大化两部分收益之和。</strong></p>
+<h3 id="这道题真正值得记住的思想"><a href="#这道题真正值得记住的思想" class="headerlink" title="这道题真正值得记住的思想"></a>这道题真正值得记住的思想</h3><p>很多背包题并不是纯粹的 0-1 背包或完全背包。</p>
+<p>当同一种物品的不同购买次数具有不同收益时，可以先将特殊收益单独建模，再结合其他算法处理剩余部分。</p>
+<p>这道题就是：</p>
+<p><strong>特殊收益用 DP，普通收益用贪心，最终通过枚举把两者组合起来。</strong></p>
+<h2 id="十、完整代码"><a href="#十、完整代码" class="headerlink" title="十、完整代码"></a>十、完整代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumSaleItems</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items, <span class="type">int</span> budget)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = items.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// w[i]：首次购买物品 i 后，能够获得的物品总数</span></span><br><span class="line">        <span class="comment">// 包括自己购买的 1 件，以及其他物品赠送的免费物品</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">w</span><span class="params">(n)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> maxfactor = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> minprice = INT_MAX;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// umii[f]：factor 等于 f 的物品有多少种（按下标计数）</span></span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; umii;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it : items) &#123;</span><br><span class="line">            maxfactor = <span class="built_in">max</span>(maxfactor, it[<span class="number">0</span>]);</span><br><span class="line">            minprice = <span class="built_in">min</span>(minprice, it[<span class="number">1</span>]);</span><br><span class="line">            umii[it[<span class="number">0</span>]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 1. 计算每种物品首次购买的收益</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> fac = items[i][<span class="number">0</span>];</span><br><span class="line">            <span class="comment">// 枚举当前 factor 的所有倍数</span></span><br><span class="line">            <span class="type">int</span> id = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (id * fac &lt;= maxfactor) &#123;</span><br><span class="line">                <span class="comment">// 如果存在 factor = id * fac 的物品</span></span><br><span class="line">                <span class="comment">// 那么这些物品都可以免费获得</span></span><br><span class="line">                <span class="comment">// 同一个 factor 可能对应多个物品，因此要加上数量</span></span><br><span class="line">                <span class="keyword">if</span> (umii.<span class="built_in">find</span>(id * fac) != umii.<span class="built_in">end</span>())</span><br><span class="line">                    w[i] += umii[id * fac];</span><br><span class="line">                id++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 0-1 背包</span></span><br><span class="line">        <span class="comment">// dp[i][j]：只考虑前 i 种物品，</span></span><br><span class="line">        <span class="comment">// 首次购买花费不超过 j 时，能够获得的最大物品数量</span></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(budget + <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= budget; j++) &#123;</span><br><span class="line">                <span class="comment">// 选择一：不首次购买当前物品</span></span><br><span class="line">                <span class="comment">// 直接继承上一行的最优结果</span></span><br><span class="line">                dp[i + <span class="number">1</span>][j] = dp[i][j];</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 选择二：首次购买当前物品</span></span><br><span class="line">                <span class="comment">// 花费 price，获得 w[i] 件物品</span></span><br><span class="line">                <span class="comment">// 从上一行转移，保证每种物品的首次购买只计算一次</span></span><br><span class="line">                <span class="keyword">if</span> (j &gt;= items[i][<span class="number">1</span>])</span><br><span class="line">                    dp[i + <span class="number">1</span>][j] =</span><br><span class="line">                        <span class="built_in">max</span>(dp[i + <span class="number">1</span>][j], dp[i][j - items[i][<span class="number">1</span>]] + w[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 处理剩余预算</span></span><br><span class="line">        <span class="comment">// 首次购买阶段预留 i 元</span></span><br><span class="line">        <span class="comment">// 剩余预算全部用于购买最便宜的物品</span></span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= budget; i++) &#123;</span><br><span class="line">            <span class="comment">// 剩余预算能够额外购买的物品数量</span></span><br><span class="line">            <span class="type">int</span> plus = (budget - i) / minprice;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 首次购买收益 + 后续重复购买收益</span></span><br><span class="line">            ans = <span class="built_in">max</span>(ans, dp[n][i] + plus);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    
+        <p class="visit-stats" aria-label="全站访问统计">
+    <span class="visit-stat" title="由不蒜子提供的去重访客估算">
+        <span class="visit-stat-label">全站访客（估算）</span>
+        <strong id="busuanzi_value_site_uv" aria-live="polite">—</strong>
+    </span>
+    <span class="visit-stat">
+        <span class="visit-stat-label">全站浏览量</span>
+        <span><strong id="busuanzi_value_site_pv" aria-live="polite">—</strong> 次</span>
+    </span>
+</p>
+
+    
+    <p>Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+
+<script src="/js/index.js"></script>
+
+<script data-site-url="https://yuexihuanchen.github.io">
+    if (location.origin === new URL(document.currentScript.dataset.siteUrl).origin) {
+        const counter = document.createElement('script');
+        counter.src = 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+        document.head.appendChild(counter);
+    }
+</script>
+
+
+
+
+
+
+</html>
