@@ -255,7 +255,28 @@
 }
 
 .blog-home .visit-stats {
-    margin: 0 0 18px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(8px, 2vw, 16px);
+    margin: 14px 0 24px;
+}
+
+.blog-home .visit-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px clamp(10px, 2.5vw, 20px);
+    border: 1px solid var(--rule);
+    background: #fcfcfa;
+}
+
+.blog-home .visit-stat-label {
+    font-weight: 600;
+}
+
+.blog-home .visit-stat strong {
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.2;
 }
 
 .footer .visit-stats {
@@ -373,8 +394,10 @@
 
 .pixel-orbits {
     position: relative;
-    aspect-ratio: 8 / 3;
-    margin: 0 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+    aspect-ratio: 5 / 2;
+    margin: 0;
     overflow: hidden;
     border: 1px solid #30294a;
     background: #101125;
