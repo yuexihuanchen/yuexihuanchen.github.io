@@ -121,7 +121,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E6%95%B0%E6%AF%8F%E7%A7%8D%E5%95%86%E5%93%81%E6%9C%89%E5%A4%9A%E5%B0%91%E5%BC%A0%E5%88%B8"><span class="toc-text">先数每种商品有多少张券</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%9C%80%E4%BE%BF%E5%AE%9C%E7%9A%84%E4%B9%B0%E4%B8%80%E9%80%81%E4%B8%80%E5%BC%80%E5%A7%8B"><span class="toc-text">从最便宜的买一送一开始</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E7%AE%97%E7%A4%BA%E4%BE%8B"><span class="toc-text">手算示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">复杂度分析</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AD%E4%B9%B0%E6%9C%80%E5%A4%9A%E7%89%A9%E5%93%81%E6%95%B0%E7%9B%AE"><span class="toc-text">购买最多物品数目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">一、题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="toc-text">二、核心思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BB%9F%E8%AE%A1%E6%AF%8F%E7%A7%8D%E7%89%A9%E5%93%81%E7%9A%84%E8%B5%A0%E9%80%81%E6%9C%BA%E4%BC%9A"><span class="toc-text">三、统计每种物品的赠送机会</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-text">举个例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%87%E6%BB%A4%E4%B8%8D%E5%88%92%E7%AE%97%E7%9A%84%E8%B5%A0%E9%80%81%E6%9C%BA%E4%BC%9A"><span class="toc-text">四、过滤不划算的赠送机会</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8E%92%E5%BA%8F-%E8%B4%AA%E5%BF%83%EF%BC%9A%E4%BC%98%E5%85%88%E8%B4%AD%E4%B9%B0%E4%BE%BF%E5%AE%9C%E7%9A%84%E8%B5%A0%E9%80%81%E6%9C%BA%E4%BC%9A"><span class="toc-text">五、排序 + 贪心：优先购买便宜的赠送机会</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E6%9C%80%E5%A4%9A%E8%83%BD%E4%BD%BF%E7%94%A8%E5%87%A0%E6%AC%A1%EF%BC%9F"><span class="toc-text">如何计算最多能使用几次？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9C%80%E5%90%8E%E5%A4%84%E7%90%86%E5%89%A9%E4%BD%99%E9%A2%84%E7%AE%97"><span class="toc-text">六、最后处理剩余预算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B%E4%B8%B2%E8%81%94"><span class="toc-text">七、完整示例串联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">八、复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">九、一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">十、完整代码</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -179,25 +179,283 @@
         
     </div>
     <div class="post-content ">
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> 种商品，每种都有一个因子和单价，付费购买的数量不限。买一份商品 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span>，最多可以获赠一份其他商品 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span>，条件是 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span> 的因子能整除 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span> 的因子。无论买多少份 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span>，通过购买 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span> 获得的赠品 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span> 最多只有一份。不同种商品可以分别赠送同一种商品。求预算内能拿到的最多件数，购买件和赠品都计入答案。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-items-from-sale-ii/">力扣原题</a></p>
+        <h1 id="购买最多物品数目"><a href="#购买最多物品数目" class="headerlink" title="购买最多物品数目"></a>购买最多物品数目</h1><h2 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h2><p>给定一个二维整数数组 <code>items</code>，其中：</p>
+<p><code>items[i] = [factor_i, price_i]</code></p>
+<ul>
+<li><code>factor_i</code>：第 i 种物品的因子。</li>
+<li><code>price_i</code>：第 i 种物品的价格。</li>
+</ul>
+<p>每种物品都有无限个，给定总预算 <code>budget</code>，要求在不超过预算的情况下，获得最多的物品。</p>
+<p><strong>特殊赠送规则：</strong></p>
+<ol>
+<li>每购买一份物品 i，最多可以免费获得一份其他物品 j。</li>
+<li>免费物品必须满足 <code>i != j</code>，且 <code>factor_i</code> 能整除 <code>factor_j</code>。</li>
+<li>对于每个有序对 <code>(i,j)</code>，赠送机会最多使用一次。</li>
+<li>不同物品可以赠送同一种物品，因此同一种物品可以被免费获得多次。</li>
+</ol>
+<p><strong>目标：最大化购买物品和免费获得物品的总数量。</strong></p>
 <span id="more"></span>
 
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把这道题想成逛超市。某种商品每买一份，最多能核销一张赠品券。券用完后，这种商品还能继续买，但每份只带走一件。记全场最低单价为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span>，那么平时凑件数，直接花 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span> 买一件最省钱。</p>
-<h3 id="先数每种商品有多少张券"><a href="#先数每种商品有多少张券" class="headerlink" title="先数每种商品有多少张券"></a>先数每种商品有多少张券</h3><p>用 <code>cnt_fac[x]</code> 统计因子恰好等于 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> 的商品种数。对因子为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> 的商品，遍历 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo separator="true">,</mo><mn>2</mn><mi>f</mi><mo separator="true">,</mo><mn>3</mn><mi>f</mi><mo separator="true">,</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">f, 2f, 3f, \ldots</annotation></semantics></math></span>，累加这些因子对应的种数，最后减去当前商品本身。这样就得到了该商品可以买一送一的次数。</p>
-<p>遍历时从 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> 开始，因为因子相同的<strong>其他商品</strong>也能当赠品。同一个因子对应的商品有相同的赠品次数，可以缓存统计结果。实现时可以把缓存初值设为 <code>-1</code>，让赠品次数恰好为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span> 的结果也能复用。</p>
-<h3 id="从最便宜的买一送一开始"><a href="#从最便宜的买一送一开始" class="headerlink" title="从最便宜的买一送一开始"></a>从最便宜的买一送一开始</h3><p>单价为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> 的买一送一，花 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> 拿两件。如果 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≥</mo><mn>2</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">p \ge 2m</annotation></semantics></math></span>，直接买两件最低价商品就能拿到同样的件数，所以只保留 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>2</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">p &lt; 2m</annotation></semantics></math></span> 的组合。按 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> 从小到大排序，每种商品最多使用自己的赠品次数，也不能超过当前预算能买的份数。用完可负担的组合后，剩余预算全部买最低价商品。</p>
-<p>为什么可以尽量多用优惠？固定使用 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span> 次时，挑最便宜的 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span> 次会留下最多预算来买单件。再用一次价格小于 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">2m</annotation></semantics></math></span> 的优惠，最多挤掉两件原本能买到的最低价商品，同时增加两件，结果不会变差。因此可以按价格从低到高买到预算无法再负担下一次为止。</p>
-<h2 id="手算示例"><a href="#手算示例" class="headerlink" title="手算示例"></a>手算示例</h2><p>商品的 <code>[因子, 单价]</code> 分别是 <code>[1, 5]</code>、<code>[2, 3]</code>、<code>[4, 4]</code>，预算是 <code>13</code>。最低单价为 <code>3</code>。</p>
+<hr>
+<h2 id="二、核心思路"><a href="#二、核心思路" class="headerlink" title="二、核心思路"></a>二、核心思路</h2><p>把这道题想象成一家促销商店：</p>
+<p>每次购买某种商品，都有一次抽取赠品的机会，但每个赠品只能领取一次。</p>
+<p>例如：</p>
 <ul>
-<li>因子 <code>1</code> 的商品有两张券，可分别领取因子 <code>2</code> 和 <code>4</code> 的商品。</li>
-<li>因子 <code>2</code> 的商品也有一张券，可以领取因子 <code>4</code> 的商品。先花 <code>3</code> 用掉这张更便宜的券，拿到两件。</li>
-<li>再花 <code>10</code> 用完因子 <code>1</code> 商品的两张券，拿到四件。最后共拿到 <strong>6 件</strong>。因子 <code>4</code> 的商品可以分别由两种不同的商品赠送。</li>
+<li>购买物品 0，可以免费获得物品 1。</li>
+<li>再购买一份物品 0，可以免费获得物品 2。</li>
+<li>两种赠品机会都使用完后，再购买物品 0，就没有赠品了。</li>
 </ul>
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li>时间复杂度为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span>。每个不同因子至多统计一次，枚举倍数总次数由 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>f</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">⌊</mo><mi>n</mi><mi mathvariant="normal">/</mi><mi>f</mi><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">\sum_{f=1}^{n}\lfloor n/f\rfloor</annotation></semantics></math></span> 限制，按价格排序也至多需要 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span>。</li>
-<li>空间复杂度为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span>，用于存放因子频次、缓存赠品次数和记录各商品的优惠。</li>
+<p>因此，每一个有效的赠送关系，都可以看作一次独立的促销机会：</p>
+<p><strong>花费 <code>price</code> 元，获得 2 件物品（购买的 1 件 + 免费的 1 件）。</strong></p>
+<p>接下来分三步：</p>
+<ol>
+<li>统计每种物品有多少个赠送机会。</li>
+<li>过滤不划算的赠送机会，按照价格从低到高排序。</li>
+<li>优先购买便宜的赠送机会，最后用剩余预算购买最低价商品。</li>
+</ol>
+<h2 id="三、统计每种物品的赠送机会"><a href="#三、统计每种物品的赠送机会" class="headerlink" title="三、统计每种物品的赠送机会"></a>三、统计每种物品的赠送机会</h2><p>首先定义两个数组：</p>
+<ul>
+<li><code>cnt_fac[i]</code>：factor 等于 i 的物品数量。</li>
+<li><code>cnt[i]</code>：factor 等于 i 的物品，能够整除多少个物品的 factor（包含自身）。</li>
 </ul>
+<p>为什么要包含自身？</p>
+<p>因为题目要求 <code>i != j</code>，所以统计时先把自身算进去，最后减去 1 即可。</p>
+<p>计算方式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> j = fac; j &lt;= n; j += fac) &#123;</span><br><span class="line">    cnt[fac] += cnt_fac[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里不用一个一个检查所有物品，而是直接枚举 <code>fac</code> 的倍数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fac、2*fac、3*fac、4*fac……</span><br></pre></td></tr></table></figure>
+
+<p>因为只有这些数可能被 <code>fac</code> 整除。</p>
+<p>最终：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = cnt[fac] - <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>num</code> 就是当前物品能够触发的赠送机会数量。</p>
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;&#123;<span class="number">1</span>,<span class="number">6</span>&#125;, &#123;<span class="number">2</span>,<span class="number">4</span>&#125;, &#123;<span class="number">3</span>,<span class="number">5</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>统计结果：</p>
+<table>
+<thead>
+<tr>
+<th>物品</th>
+<th align="right">factor</th>
+<th>能整除的 factor</th>
+<th align="right">赠送机会</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>物品0</td>
+<td align="right">1</td>
+<td>1、2、3</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td>物品1</td>
+<td align="right">2</td>
+<td>2</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>物品2</td>
+<td align="right">3</td>
+<td>3</td>
+<td align="right">0</td>
+</tr>
+</tbody></table>
+<p>物品0可以产生两次赠送机会：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">购买物品0 → 免费获得物品1</span><br><span class="line"></span><br><span class="line">购买物品0 → 免费获得物品2</span><br></pre></td></tr></table></figure>
+
+<p>因此，物品0对应：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">price = <span class="number">6</span>;</span><br><span class="line">num = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意：这里的 <code>num</code> 是可以使用的赠送机会数量，不是一次购买就能获得的赠品数量。</p>
+<h2 id="四、过滤不划算的赠送机会"><a href="#四、过滤不划算的赠送机会" class="headerlink" title="四、过滤不划算的赠送机会"></a>四、过滤不划算的赠送机会</h2><p>找到所有赠送机会后，并不是都值得购买。</p>
+<p>定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min_price = 所有物品中的最低价格;</span><br></pre></td></tr></table></figure>
+
+<p>假设最低价格是 4 元。</p>
+<p>现在有一次赠送机会：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">花费 9 元 → 获得 2 件物品</span><br></pre></td></tr></table></figure>
+
+<p>但如果直接购买两件最低价商品：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">花费 8 元 → 同样获得 2 件物品</span><br></pre></td></tr></table></figure>
+
+<p>显然，花 9 元触发赠送不划算。</p>
+<p>因此，只保留满足以下条件的赠送机会：</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi><mo>&lt;</mo><mn>2</mn><mo>×</mo><mi>m</mi><mi>i</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">price &lt; 2 \times min\_price</annotation></semantics></math></span>
+<p>对应代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">2LL</span> * min_price &lt;= it[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>生活类比：</strong></p>
+<p>如果商店告诉你花 9 元买一件送一件，但旁边两件普通商品只要 8 元，你肯定选择直接买两件普通商品。</p>
+<p>所以，贵的赠送机会直接放弃。</p>
+<h2 id="五、排序-贪心：优先购买便宜的赠送机会"><a href="#五、排序-贪心：优先购买便宜的赠送机会" class="headerlink" title="五、排序 + 贪心：优先购买便宜的赠送机会"></a>五、排序 + 贪心：优先购买便宜的赠送机会</h2><p>现在剩下的每次赠送机会都有相同的特点：</p>
+<ul>
+<li>花费一定的 <code>price</code>。</li>
+<li>获得 2 件物品。</li>
+<li>每个机会只能使用一次。</li>
+</ul>
+<p>因此，收益相同，当然优先选择价格便宜的机会。</p>
+<p>把每种物品的赠送机会保存为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">emplace_back</span>(price, num);</span><br></pre></td></tr></table></figure>
+
+<p>然后按照价格排序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ranges::<span class="built_in">sort</span>(a);</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th align="right">每次花费</th>
+<th align="right">赠送机会数量</th>
+<th align="right">每次获得</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">5 元</td>
+<td align="right">3 次</td>
+<td align="right">2 件</td>
+</tr>
+<tr>
+<td align="right">6 元</td>
+<td align="right">2 次</td>
+<td align="right">2 件</td>
+</tr>
+<tr>
+<td align="right">7 元</td>
+<td align="right">1 次</td>
+<td align="right">2 件</td>
+</tr>
+</tbody></table>
+<p>优先使用 5 元的机会，再使用 6 元的机会。</p>
+<h3 id="如何计算最多能使用几次？"><a href="#如何计算最多能使用几次？" class="headerlink" title="如何计算最多能使用几次？"></a>如何计算最多能使用几次？</h3><p>假设：</p>
+<ul>
+<li>当前机会价格为 <code>price</code>。</li>
+<li>当前机会数量为 <code>num</code>。</li>
+<li>剩余预算为 <code>budget</code>。</li>
+</ul>
+<p>那么最多可以使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> c = <span class="built_in">min</span>(num, budget / price);</span><br></pre></td></tr></table></figure>
+
+<p>这里取两个值的最小值：</p>
+<ul>
+<li><code>num</code>：赠送机会本身的数量限制。</li>
+<li><code>budget / price</code>：预算能够承担的次数限制。</li>
+</ul>
+<p>每使用一次机会：</p>
+<ul>
+<li>花费 <code>price</code>。</li>
+<li>获得购买的 1 件。</li>
+<li>免费获得的 1 件。</li>
+</ul>
+<p>所以：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">budget -= price * c;</span><br><span class="line">ans += <span class="number">2</span> * c;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、最后处理剩余预算"><a href="#六、最后处理剩余预算" class="headerlink" title="六、最后处理剩余预算"></a>六、最后处理剩余预算</h2><p>当所有划算的赠送机会处理完毕后，剩下的钱就直接购买最低价商品。</p>
+<p>因为这时已经没有值得使用的赠送机会了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ans += budget / min_price;</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<p>总预算 19 元，最低价格 4 元。</p>
+<p>假设前面使用了两次 6 元的赠送机会：</p>
+<ul>
+<li>花费 12 元。</li>
+<li>获得 4 件物品。</li>
+<li>剩余 7 元。</li>
+</ul>
+<p>再用 4 元购买一件最低价商品。</p>
+<p>最终：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 + 1 = 5 件</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、完整示例串联"><a href="#七、完整示例串联" class="headerlink" title="七、完整示例串联"></a>七、完整示例串联</h2><p>输入：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">items = &#123;&#123;<span class="number">1</span>,<span class="number">6</span>&#125;, &#123;<span class="number">2</span>,<span class="number">4</span>&#125;, &#123;<span class="number">3</span>,<span class="number">5</span>&#125;&#125;;</span><br><span class="line">budget = <span class="number">19</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第一步：统计赠送机会。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">物品0：2 次，价格 6 元</span><br><span class="line">物品1：0 次</span><br><span class="line">物品2：0 次</span><br></pre></td></tr></table></figure>
+
+<p>第二步：过滤不划算的机会。</p>
+<p>最低价格：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min_price = 4</span><br></pre></td></tr></table></figure>
+
+<p>判断：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2 * min_price = 8</span><br><span class="line"></span><br><span class="line">6 &lt; 8</span><br></pre></td></tr></table></figure>
+
+<p>物品0的两次赠送机会值得保留。</p>
+<p>第三步：排序并贪心。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th align="right">花费</th>
+<th align="right">获得物品</th>
+<th align="right">剩余预算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用第一次赠送机会</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td>使用第二次赠送机会</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td>购买最低价商品</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+</tbody></table>
+<p>最终：</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mi>n</mi><mi>s</mi><mo>=</mo><mn>2</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">ans = 2 + 2 + 1 = 5</annotation></semantics></math></span>
+<p>输出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、复杂度分析"><a href="#八、复杂度分析" class="headerlink" title="八、复杂度分析"></a>八、复杂度分析</h2><p>设 n 为物品数量，且 <code>factor</code> 的范围为 1 到 n。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>统计 factor 数量</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>枚举各个 factor 的倍数</td>
+<td>O(n log n)</td>
+</tr>
+<tr>
+<td>赠送机会排序</td>
+<td>O(n log n)</td>
+</tr>
+<tr>
+<td>贪心购买</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<p>整体时间复杂度：</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span>
+<p>空间复杂度：</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span>
+<h2 id="九、一句话总结"><a href="#九、一句话总结" class="headerlink" title="九、一句话总结"></a>九、一句话总结</h2><p><strong>先通过因子和倍数统计赠送机会，再过滤掉价格不划算的机会，按照价格从低到高贪心购买，最后用剩余预算购买最低价商品。</strong></p>
+<p>这道题最值得学习的地方是：</p>
+<p><strong>把复杂的赠送规则转化成一个个独立的购买机会，再将问题转化为排序 + 贪心。</strong></p>
+<p><img src="https://i-blog.csdnimg.cn/direct/2d62ca01213a45c6a8f6eac1cb8c3f9b.png" alt="在这里插入图片描述"></p>
+<h2 id="十、完整代码"><a href="#十、完整代码" class="headerlink" title="十、完整代码"></a>十、完整代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumSaleItems</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items, <span class="type">int</span> budget)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = items.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt_fac</span><span class="params">(n + <span class="number">1</span>)</span></span>; <span class="comment">// 因子factor数量</span></span><br><span class="line">        <span class="type">int</span> min_price = INT_MAX;    <span class="comment">// 找到单价最便宜的</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it : items) &#123;</span><br><span class="line">            cnt_fac[it[<span class="number">0</span>]]++;</span><br><span class="line">            min_price = <span class="built_in">min</span>(min_price, it[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">            n + <span class="number">1</span>)</span></span>; <span class="comment">// 统计因子i有多少个数能被它整除，即有多少次能获得赠品机会</span></span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; a; <span class="comment">// 价格，以及能用这个价格获得2件物品的次数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it : items) &#123;</span><br><span class="line">            <span class="keyword">if</span> (min_price * <span class="number">2</span> &lt;= it[<span class="number">1</span>]) <span class="comment">// 不如直接不要赠品 直接购买这个</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (cnt[it[<span class="number">0</span>]] == <span class="number">0</span>) <span class="comment">// 略过统计完了的</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = it[<span class="number">0</span>]; j &lt;= n; j += it[<span class="number">0</span>]) &#123; <span class="comment">// 因子facotr 范围1~n</span></span><br><span class="line">                    cnt[it[<span class="number">0</span>]] += cnt_fac[j];</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt[it[<span class="number">0</span>]] &gt; <span class="number">1</span>)</span><br><span class="line">                a.<span class="built_in">emplace_back</span>(it[<span class="number">1</span>], cnt[it[<span class="number">0</span>]] - <span class="number">1</span>); <span class="comment">// 去掉本身的一个</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ranges::<span class="built_in">sort</span>(a); <span class="comment">// 排序 按单价</span></span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; [price, num] : a) &#123;</span><br><span class="line">            <span class="keyword">if</span> (budget - price &lt; <span class="number">0</span>) &#123;  <span class="comment">//钱不够了</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> c = <span class="built_in">min</span>(num, budget / price); <span class="comment">//已有的钱最多能买几次有赠品的</span></span><br><span class="line">            budget -= price * c;</span><br><span class="line">            ans += <span class="number">2</span> * c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (budget) <span class="comment">//还有余额 梭哈单价最便宜的</span></span><br><span class="line">            ans += budget / min_price;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 
         
         <br />
