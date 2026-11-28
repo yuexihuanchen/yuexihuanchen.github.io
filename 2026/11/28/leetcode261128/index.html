@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        力扣 3947. 购买最多物品数目 II - yuexihuachen
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    <link rel="stylesheet" href="/css/blog.css?v=20261127-6">
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="blog-site">
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button type="button" aria-label="导航菜单" aria-controls="nav-content" aria-expanded="false">
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" alt="yuexihuachen 的头像" />
+        </div>
+        <div class="name">
+            <i>yuexihuachen</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/" >
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/leetcode/" >
+                    <span>力扣每日一题</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags" >
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives" >
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener" href="https://my-site-pink-iota.vercel.app/">
+                    <i class="iconfont icon-shoucang1" aria-hidden="true"></i>
+                    <span>数字花园</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/" >
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/" >
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <button id="search" type="button">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </button>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E6%95%B0%E6%AF%8F%E7%A7%8D%E5%95%86%E5%93%81%E6%9C%89%E5%A4%9A%E5%B0%91%E5%BC%A0%E5%88%B8"><span class="toc-text">先数每种商品有多少张券</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%9C%80%E4%BE%BF%E5%AE%9C%E7%9A%84%E4%B9%B0%E4%B8%80%E9%80%81%E4%B8%80%E5%BC%80%E5%A7%8B"><span class="toc-text">从最便宜的买一送一开始</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E7%AE%97%E7%A4%BA%E4%BE%8B"><span class="toc-text">手算示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">复杂度分析</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input" aria-label="搜索"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        
+    </div>
+    
+    <div class="index-middle blog-content">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        力扣 3947. 购买最多物品数目 II
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2026-11-28 10:50:39</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#贪心" title="贪心">贪心</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#因子与倍数" title="因子与倍数">因子与倍数</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#计数" title="计数">计数</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#排序" title="排序">排序</a>
+        <span>/</span>
+        
+        </span>
+        
+        <span class="attr">本文浏览 <strong id="busuanzi_value_page_pv" aria-live="polite">—</strong> 次</span>
+        
+            <span class="attr"><a href="/leetcode/">力扣每日一题</a></span>
+        
+    </div>
+    <div class="post-content ">
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> 种商品，每种都有一个因子和单价，付费购买的数量不限。买一份商品 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span>，最多可以获赠一份其他商品 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span>，条件是 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span> 的因子能整除 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span> 的因子。无论买多少份 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span>，通过购买 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span> 获得的赠品 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span> 最多只有一份。不同种商品可以分别赠送同一种商品。求预算内能拿到的最多件数，购买件和赠品都计入答案。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-items-from-sale-ii/">力扣原题</a></p>
+<span id="more"></span>
+
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把这道题想成逛超市。某种商品每买一份，最多能核销一张赠品券。券用完后，这种商品还能继续买，但每份只带走一件。记全场最低单价为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span>，那么平时凑件数，直接花 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span> 买一件最省钱。</p>
+<h3 id="先数每种商品有多少张券"><a href="#先数每种商品有多少张券" class="headerlink" title="先数每种商品有多少张券"></a>先数每种商品有多少张券</h3><p>用 <code>cnt_fac[x]</code> 统计因子恰好等于 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> 的商品种数。对因子为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> 的商品，遍历 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo separator="true">,</mo><mn>2</mn><mi>f</mi><mo separator="true">,</mo><mn>3</mn><mi>f</mi><mo separator="true">,</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">f, 2f, 3f, \ldots</annotation></semantics></math></span>，累加这些因子对应的种数，最后减去当前商品本身。这样就得到了该商品可以买一送一的次数。</p>
+<p>遍历时从 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> 开始，因为因子相同的<strong>其他商品</strong>也能当赠品。同一个因子对应的商品有相同的赠品次数，可以缓存统计结果。实现时可以把缓存初值设为 <code>-1</code>，让赠品次数恰好为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span> 的结果也能复用。</p>
+<h3 id="从最便宜的买一送一开始"><a href="#从最便宜的买一送一开始" class="headerlink" title="从最便宜的买一送一开始"></a>从最便宜的买一送一开始</h3><p>单价为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> 的买一送一，花 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> 拿两件。如果 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≥</mo><mn>2</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">p \ge 2m</annotation></semantics></math></span>，直接买两件最低价商品就能拿到同样的件数，所以只保留 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>2</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">p &lt; 2m</annotation></semantics></math></span> 的组合。按 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> 从小到大排序，每种商品最多使用自己的赠品次数，也不能超过当前预算能买的份数。用完可负担的组合后，剩余预算全部买最低价商品。</p>
+<p>为什么可以尽量多用优惠？固定使用 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span> 次时，挑最便宜的 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span> 次会留下最多预算来买单件。再用一次价格小于 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">2m</annotation></semantics></math></span> 的优惠，最多挤掉两件原本能买到的最低价商品，同时增加两件，结果不会变差。因此可以按价格从低到高买到预算无法再负担下一次为止。</p>
+<h2 id="手算示例"><a href="#手算示例" class="headerlink" title="手算示例"></a>手算示例</h2><p>商品的 <code>[因子, 单价]</code> 分别是 <code>[1, 5]</code>、<code>[2, 3]</code>、<code>[4, 4]</code>，预算是 <code>13</code>。最低单价为 <code>3</code>。</p>
+<ul>
+<li>因子 <code>1</code> 的商品有两张券，可分别领取因子 <code>2</code> 和 <code>4</code> 的商品。</li>
+<li>因子 <code>2</code> 的商品也有一张券，可以领取因子 <code>4</code> 的商品。先花 <code>3</code> 用掉这张更便宜的券，拿到两件。</li>
+<li>再花 <code>10</code> 用完因子 <code>1</code> 商品的两张券，拿到四件。最后共拿到 <strong>6 件</strong>。因子 <code>4</code> 的商品可以分别由两种不同的商品赠送。</li>
+</ul>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
+<li>时间复杂度为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span>。每个不同因子至多统计一次，枚举倍数总次数由 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>f</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">⌊</mo><mi>n</mi><mi mathvariant="normal">/</mi><mi>f</mi><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">\sum_{f=1}^{n}\lfloor n/f\rfloor</annotation></semantics></math></span> 限制，按价格排序也至多需要 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span>。</li>
+<li>空间复杂度为 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span>，用于存放因子频次、缓存赠品次数和记录各商品的优惠。</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    
+        <p class="visit-stats" aria-label="全站访问统计">
+    <span class="visit-stat" title="由不蒜子提供的去重访客估算">
+        <span class="visit-stat-label">全站访客（估算）</span>
+        <strong id="busuanzi_value_site_uv" aria-live="polite">—</strong>
+    </span>
+    <span class="visit-stat">
+        <span class="visit-stat-label">全站浏览量</span>
+        <span><strong id="busuanzi_value_site_pv" aria-live="polite">—</strong> 次</span>
+    </span>
+</p>
+
+    
+    <p>Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+
+<script src="/js/index.js"></script>
+
+<script data-site-url="https://yuexihuanchen.github.io">
+    if (location.origin === new URL(document.currentScript.dataset.siteUrl).origin) {
+        const counter = document.createElement('script');
+        counter.src = 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+        document.head.appendChild(counter);
+    }
+</script>
+
+
+
+
+
+
+</html>
